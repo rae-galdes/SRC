@@ -78,8 +78,8 @@ nav.primary a:hover{color:var(--copper-deep)}
 .toggle[aria-checked="true"] .track::after{transform:translateX(16px)}
 
 /* Hero */
-.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:56px 0 48px}
-.logo-slot{position:relative;width:min(440px, 100%);aspect-ratio:1;justify-self:center}
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start;padding:48px 0 48px}
+.logo-slot{position:relative;width:min(440px, 100%, calc(100vh - 200px));aspect-ratio:1;justify-self:center;margin-top:18px}
 .logo-slot img{width:100%;height:100%;object-fit:contain;transition:opacity .4s}
 html.js body:not(.easy) .logo-slot img{opacity:0}
 .eyebrow{font:500 .78rem var(--mono);letter-spacing:.08em;color:var(--copper);text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -152,6 +152,32 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem, 4vw, 2.8rem)
 .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
 .about p{margin:0 0 18px;max-width:62ch}
 .about .big{font-family:var(--serif);font-size:clamp(1.3rem, 2.4vw, 1.7rem);line-height:1.4;color:var(--copper-deep)}
+/* Contact tablet */
+.tablet{width:min(540px, 100%);margin:8px auto 0;padding:14px;border-radius:38px;background:linear-gradient(145deg,#8a5240,#5f3327);box-shadow:0 30px 60px -30px rgba(91,44,31,.6), inset 0 1px 0 rgba(255,255,255,.18)}
+.screen{position:relative;aspect-ratio:16/10;border-radius:26px;overflow:hidden;background:linear-gradient(160deg,#fbe9dc,#f3dfe6 55%,#e4e8f1)}
+.wall{position:absolute;inset:0;width:100%;height:100%}
+.status{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:10px 20px;font:500 .72rem var(--mono);color:var(--copper-deep);z-index:2}
+.sig{display:flex;gap:3px;align-items:flex-end}.sig i{display:block;width:3px;background:var(--copper-deep);border-radius:2px}
+.sig i:nth-child(1){height:5px}.sig i:nth-child(2){height:8px}.sig i:nth-child(3){height:11px}
+.home{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:clamp(28px, 8vw, 72px);z-index:1}
+.app{display:flex;flex-direction:column;align-items:center;gap:10px;background:none;border:0;padding:6px;cursor:pointer;color:var(--ink);font:500 .9rem var(--sans);border-radius:22px}
+.app .icon{width:clamp(76px, 15vw, 104px);height:clamp(76px, 15vw, 104px);display:block;transition:transform .25s ease}
+.app:hover .icon{transform:translateY(-3px) scale(1.04)}
+.app:active .icon{transform:scale(.95)}
+.appview{position:absolute;top:0;left:0;width:100%;height:100%;padding:0;scroll-margin:0;z-index:3;background:rgba(253,244,236,.96);display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .3s ease, border-radius .45s;transform-origin:0 0}
+.appbar{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:30px 18px 8px;border-bottom:1px solid var(--line)}
+.appbar b{font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--copper-deep)}
+.home-btn{justify-self:start;background:none;border:0;font:500 .8rem var(--mono);color:var(--copper-deep);cursor:pointer;padding:6px 8px;border-radius:8px}
+.appbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 20px 30px;text-align:center}
+.app-label{margin:0 0 6px;color:var(--ink-soft);font-size:.95rem}
+.app-big{margin:0 0 22px;font-family:var(--serif);font-size:clamp(1.1rem, 3vw, 1.6rem);color:var(--copper-deep);word-break:break-word}
+.pron{font-family:var(--sans);font-style:italic;font-size:.75em;color:var(--ink-soft)}
+.homebar{position:absolute;left:50%;bottom:8px;width:120px;height:5px;margin-left:-60px;border-radius:3px;background:rgba(91,44,31,.45);z-index:4}
+body.easy .tablet{background:#5a2c1f}
+body.easy .screen{background:#fffaf5}
+@media (max-width:600px){ .screen{aspect-ratio:3/4} .tablet{padding:10px;border-radius:30px} }
+.view .bh{transition:opacity .6s ease}
+.view.building .bh{opacity:0}
 .spec{padding:8px 22px}
 .spec dl{margin:0}
 .spec div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-bottom:1px dashed var(--line)}
@@ -302,27 +328,23 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   <section id="services" aria-labelledby="services-h">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="idx">01 / SERVICES</span>
         <h2 id="services-h">Three practice areas</h2>
         <p>Each area brings strategy, learning and systems together. Choose one to see what it includes.</p>
       </div>
       <div class="cats">
         <a class="cat glass spot reveal" href="#/dei" data-slug="dei">
-          <div class="tag"><span>01</span><span>DEI</span></div>
           <h3>Diversity, equity and inclusion</h3>
           <p>Moving inclusion from intention into everyday practice, across policy, systems, leadership and culture.</p>
           <ul class="incl"><li>DEI advisory and education</li><li>Leadership development</li></ul>
           <span class="go">EXPLORE <span aria-hidden="true">→</span></span>
         </a>
         <a class="cat glass spot reveal" href="#/ethical-ai" data-slug="ethical-ai">
-          <div class="tag"><span>02</span><span>AI + DIGITAL</span></div>
           <h3>Ethical AI and digital capability</h3>
           <p>Helping people adopt AI and digital tools safely and confidently, with learning and systems that fit how they work.</p>
-          <ul class="incl"><li>Ethical AI education, adoption and workforce capability</li><li>Digital learning and enablement strategy</li><li>Instructional and learning experience design</li><li>LMS and CRM strategy, implementation and integration</li></ul>
+          <ul class="incl"><li>Ethical AI education, adoption and workforce capability</li><li>Digital learning and enablement strategy, including LMS and CRM</li><li>Instructional and learning experience design</li></ul>
           <span class="go">EXPLORE <span aria-hidden="true">→</span></span>
         </a>
         <a class="cat glass spot reveal" href="#/talent" data-slug="talent">
-          <div class="tag"><span>03</span><span>TALENT</span></div>
           <h3>Talent and workforce strategy</h3>
           <p>Knowing the capability you have, the capability you need, and how to close the gap.</p>
           <ul class="incl"><li>Talent and workforce strategy</li><li>Capability frameworks and organisational development</li><li>Organisational risk and capability advisory</li></ul>
@@ -335,7 +357,6 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   <section id="engagements" aria-labelledby="eng-h">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="idx">02 / ENGAGEMENTS</span>
         <h2 id="eng-h">Start where you need to</h2>
       </div>
       <div class="scale glass reveal">
@@ -354,7 +375,6 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   <section id="about" aria-labelledby="about-h">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="idx">03 / ABOUT</span>
         <h2 id="about-h">The human side of technical solutions</h2>
       </div>
       <div class="about">
@@ -381,15 +401,41 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   <section id="contact" aria-labelledby="contact-h">
     <div class="container">
       <div class="contact glass reveal">
-        <span class="idx">04 / CONTACT</span>
         <h2 id="contact-h">Let's talk</h2>
-        <p>If you're working through a capability, learning, inclusion or technology challenge, I'd welcome a conversation.</p>
-        <div class="ctas">
-          <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">sarahraeconsulting@gmail.com</a>
-          <button class="btn ghost" type="button" id="copyEmail">Copy email</button>
-          <a class="btn ghost" href="https://www.linkedin.com/in/raegaldes/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+        <p>If you're working through a capability, learning, inclusion or technology challenge, I'd welcome a conversation. Pick an app.</p>
+        <div class="tablet" id="tablet">
+          <div class="screen" id="tabScreen">
+            <canvas class="wall" id="tabWall" aria-hidden="true"></canvas>
+            <div class="status" aria-hidden="true"><span id="tabTime">9:41</span><span class="sig"><i></i><i></i><i></i></span></div>
+            <div class="home" id="tabHome">
+              <button class="app" type="button" data-app="mail"><canvas class="icon" data-icon="mail" aria-hidden="true"></canvas><span>Email</span></button>
+              <button class="app" type="button" data-app="profile"><canvas class="icon" data-icon="profile" aria-hidden="true"></canvas><span>LinkedIn</span></button>
+            </div>
+            <section class="appview" id="app-mail" hidden aria-labelledby="mail-h">
+              <div class="appbar"><button class="home-btn" type="button">← Home</button><b id="mail-h" tabindex="-1">Email</b><span></span></div>
+              <div class="appbody">
+                <p class="app-label">Send a message to</p>
+                <p class="app-big">sarahraeconsulting@gmail.com</p>
+                <div class="ctas">
+                  <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">Write an email</a>
+                  <button class="btn ghost" type="button" id="copyEmail">Copy address</button>
+                </div>
+                <span class="copy-status" role="status" aria-live="polite" id="copyStatus"></span>
+              </div>
+            </section>
+            <section class="appview" id="app-profile" hidden aria-labelledby="profile-h">
+              <div class="appbar"><button class="home-btn" type="button">← Home</button><b id="profile-h" tabindex="-1">LinkedIn</b><span></span></div>
+              <div class="appbody">
+                <p class="app-big">Rae Galdes <span class="pron">(they/them)</span></p>
+                <p class="app-label">Principal Consultant, Sarah Rae Consulting</p>
+                <div class="ctas">
+                  <a class="btn primary" href="https://www.linkedin.com/in/raegaldes/" target="_blank" rel="noopener">Open my LinkedIn profile<span class="sr-only"> (opens in a new tab)</span></a>
+                </div>
+              </div>
+            </section>
+            <div class="homebar" aria-hidden="true"></div>
+          </div>
         </div>
-        <span class="copy-status" role="status" aria-live="polite" id="copyStatus"></span>
       </div>
     </div>
   </section>
@@ -399,15 +445,14 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
 <article class="view" id="view-dei" data-title="Diversity, equity and inclusion" hidden aria-labelledby="dei-h">
   <div class="container">
     <a class="back" href="#services">← All services</a>
-    <div class="idx">SERVICES / 01 / DEI</div>
     <h1 id="dei-h" tabindex="-1">Diversity, equity and inclusion</h1>
     <p class="lead">Inclusion that holds up in practice. I help organisations find where policies, systems and everyday habits shut people out, then build the strategy, learning and leadership capability to change that.</p>
     <div class="svcs">
-      <div class="svc glass spot reveal"><div class="tag"><span>ADVISORY</span><span>01</span></div><h3>DEI advisory</h3><p>Strategy, action plans and practical advice grounded in your data and your people's experience.</p>
+      <div class="svc glass spot reveal"><h3>DEI advisory</h3><p>Strategy, action plans and practical advice grounded in your data and your people's experience.</p>
         <ul><li>Inclusion reviews of policy, process and systems</li><li>DEI strategy and action planning</li><li>Governance support for committees and employee networks</li><li>Inclusive recruitment and onboarding</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>EDUCATION</span><span>02</span></div><h3>DEI education</h3><p>Learning that builds understanding and confidence, designed to be accessible from the start.</p>
+      <div class="svc glass spot reveal"><h3>DEI education</h3><p>Learning that builds understanding and confidence, designed to be accessible from the start.</p>
         <ul><li>Workshops for staff and leaders</li><li>Gender diversity and trans inclusion</li><li>Neuroinclusion at work</li><li>Allyship and everyday inclusion</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>LEADERSHIP</span><span>03</span></div><h3>Leadership development</h3><p>Building leaders' capacity to lead change, lead inclusively and make sound decisions when it matters.</p>
+      <div class="svc glass spot reveal"><h3>Leadership development</h3><p>Building leaders' capacity to lead change, lead inclusively and make sound decisions when it matters.</p>
         <ul><li>Inclusive leadership programs</li><li>Leading through change</li><li>Psychological safety in teams</li></ul></div>
     </div>
     <div class="approach glass reveal">
@@ -429,18 +474,15 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
 <article class="view" id="view-ethical-ai" data-title="Ethical AI and digital capability" hidden aria-labelledby="ai-h">
   <div class="container">
     <a class="back" href="#services">← All services</a>
-    <div class="idx">SERVICES / 02 / AI + DIGITAL</div>
     <h1 id="ai-h" tabindex="-1">Ethical AI and digital capability</h1>
     <p class="lead">AI and digital tools only deliver when people can use them well and safely. I help organisations build that capability, set sensible guardrails, and design the learning and systems that make adoption stick.</p>
     <div class="svcs">
-      <div class="svc glass spot reveal"><div class="tag"><span>AI</span><span>01</span></div><h3>Ethical AI education, adoption and workforce capability</h3><p>Responsible AI literacy for leaders and teams, with the governance and change support that make adoption safe and useful.</p>
+      <div class="svc glass spot reveal"><h3>Ethical AI education, adoption and workforce capability</h3><p>Responsible AI literacy for leaders and teams, with the governance and change support that make adoption safe and useful.</p>
         <ul><li>AI literacy programs by role</li><li>Responsible use guidelines and guardrails</li><li>AI governance and risk awareness</li><li>Adoption and change planning</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>ENABLEMENT</span><span>02</span></div><h3>Digital learning and enablement strategy</h3><p>A clear plan for how people learn new tools and ways of working, tied to the capability you need.</p>
-        <ul><li>Digital learning strategy and roadmaps</li><li>Enablement for system rollouts</li><li>Blended learning models</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>LXD</span><span>03</span></div><h3>Instructional and learning experience design</h3><p>Learning built around real tasks, accessible by default, and matched to how people will use it.</p>
+      <div class="svc glass spot reveal"><h3>Digital learning and enablement strategy</h3><p>A clear plan for how people learn new tools and ways of working, and the learning and client platforms that support it.</p>
+        <ul><li>Digital learning strategy and roadmaps</li><li>Enablement for system rollouts</li><li>LMS and CRM selection, implementation and integration</li><li>Data, reporting and migration</li></ul></div>
+      <div class="svc glass spot reveal"><h3>Instructional and learning experience design</h3><p>Learning built around real tasks, accessible by default, and matched to how people will use it.</p>
         <ul><li>eLearning and blended programs</li><li>Job aids and performance support</li><li>Accessibility reviews of learning</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>SYSTEMS</span><span>04</span></div><h3>LMS and CRM strategy, implementation and integration</h3><p>Choosing, configuring and connecting platforms so the technology supports the people using it.</p>
-        <ul><li>Platform selection and requirements</li><li>Configuration and implementation</li><li>Integrations and custom tools</li><li>Data, reporting and migration</li></ul></div>
     </div>
     <div class="approach glass reveal">
       <h2>How I work</h2>
@@ -461,15 +503,14 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
 <article class="view" id="view-talent" data-title="Talent and workforce strategy" hidden aria-labelledby="talent-h">
   <div class="container">
     <a class="back" href="#services">← All services</a>
-    <div class="idx">SERVICES / 03 / TALENT</div>
     <h1 id="talent-h" tabindex="-1">Talent and workforce strategy</h1>
     <p class="lead">Knowing the capability you have, the capability you need, and how to close the gap. I help organisations plan their workforce, define what good looks like, and reduce the risks that capability gaps create.</p>
     <div class="svcs">
-      <div class="svc glass spot reveal"><div class="tag"><span>WORKFORCE</span><span>01</span></div><h3>Talent and workforce strategy</h3><p>Understanding the skills you have and need, and how to attract, grow and keep the people who close the gap.</p>
+      <div class="svc glass spot reveal"><h3>Talent and workforce strategy</h3><p>Understanding the skills you have and need, and how to attract, grow and keep the people who close the gap.</p>
         <ul><li>Workforce planning and skills mapping</li><li>Attraction, development and retention strategy</li><li>Succession and career pathways</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>OD</span><span>02</span></div><h3>Capability frameworks and organisational development</h3><p>Frameworks that describe what good looks like, built to be used in recruitment, development and planning.</p>
+      <div class="svc glass spot reveal"><h3>Capability frameworks and organisational development</h3><p>Frameworks that describe what good looks like, built to be used in recruitment, development and planning.</p>
         <ul><li>Capability and competency frameworks</li><li>Organisation design and change</li><li>Performance and development processes</li></ul></div>
-      <div class="svc glass spot reveal"><div class="tag"><span>RISK</span><span>03</span></div><h3>Organisational risk and capability advisory</h3><p>Finding where capability gaps create risk, and building a realistic plan to close them.</p>
+      <div class="svc glass spot reveal"><h3>Organisational risk and capability advisory</h3><p>Finding where capability gaps create risk, and building a realistic plan to close them.</p>
         <ul><li>Capability gap and risk assessment</li><li>Compliance and mandatory learning review</li><li>Critical role and key person risk</li></ul></div>
     </div>
     <div class="approach glass reveal">
@@ -540,7 +581,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
         var cr = range.getBoundingClientRect();
         if (!cr.width) continue;
         if (Math.abs(cr.top - lastY) > cr.height * .5){ line++; lastY = cr.top; }
-        out.push({x:cr.left, y:cr.top, w:cr.width, h:cr.height, col:col, line:line});
+        out.push({x:cr.left, y:cr.top, w:cr.width, h:cr.height, col:col, line:line, ch:txt[i]});
       }
     }
     return out;
@@ -568,7 +609,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
     var canvas = document.getElementById('field'), ctx = canvas.getContext('2d');
     var slotEl = document.getElementById('logoSlot'), homeEl = document.getElementById('home');
     var W = 0, H = 0, parts = [], bits = [], ripples = [], raf = 0, running = false, still = false, lastSlot = null;
-    var t0 = performance.now(), mouse = {x:-9999, y:-9999, on:false, vx:0, vy:0, dx:0, dy:0}, gathers = [], gatherUntil = 0;
+    var t0 = performance.now(), mouse = {x:-9999, y:-9999, on:false, vx:0, vy:0, dx:0, dy:0, moved:0}, gathers = [], gatherUntil = 0;
     var formers = [], fEdges = [], formReleased = false;
     var AC = ['168,100,74','222,150,120','158,184,214','178,180,214','236,176,140','123,70,54'];
 
@@ -596,13 +637,17 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
           sx:Math.random(), sy:Math.random(), st:rnd(0, .45), dance:null,
           fade: Math.random() < .82 ? 1 : rnd(.35, .6)});   /* most dots fade as they scatter, some stay as page dust */
       });
-      for (var i = 0; i < 160; i++){
+      for (var i = 0; i < 320; i++){
         parts.push({x:rnd(0, W), y:rnd(0, H), vx:0, vy:0, logo:false, letter:false, r:rnd(.5, 2.4), shp:shapeOf(), fs:'rgb(' + pick(AC) + ')',
-          base:rnd(.3, .7), tw:rnd(.0006, .0025), ph:rnd(0, 6.28), delay:0, free:0, fall:rnd(.04, .14), gi:i, dance:null});
+          base:rnd(.4, .85), tw:rnd(.0006, .0025), ph:rnd(0, 6.28), delay:0, free:0, fall:rnd(.04, .14), gi:i, dance:null});
       }
+      parts.forEach(function(p){
+        galaxyInit(p);
+        var g0 = galaxy(p, 0); p.x = g0[0] + rnd(-30, 30); p.y = g0[1] + rnd(-30, 30);
+      });
     }
     /* Mixed shapes and sizes so the field never reads as a uniform cluster of holes */
-    function shapeOf(){ var u = Math.random(); return u < .34 ? 0 : u < .52 ? 1 : u < .67 ? 2 : u < .82 ? 3 : 4; }
+    function shapeOf(){ var u = Math.random(); return u < .67 ? 0 : u < .85 ? 1 : 4;   /* squares, circles, diamonds */ }
     function dot(x, y, r, shp){
       switch (shp){
         case 0: ctx.fillRect(x - r, y - r, r * 2, r * 2); break;
@@ -611,6 +656,24 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
         case 3: ctx.fillRect(x - r * .45, y - r * 1.7, r * .9, r * 3.4); break;
         default: ctx.beginPath(); ctx.moveTo(x, y - r * 1.4); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r * 1.4); ctx.lineTo(x - r, y); ctx.fill();
       }
+    }
+    /* Background dust sits in a slowly turning, tilted spiral of arms, wisps and a halo, not an even spread */
+    function galaxyInit(p){
+      var u = Math.random(), g = (Math.random() + Math.random() + Math.random() - 1.5);
+      if (u < .16){ p.gr = rnd(.05, 1.15); p.ga = rnd(0, 6.283); }
+      else if (u < .26){ p.gr = rnd(.005, .09); p.ga = rnd(0, 6.283); }
+      else {
+        var arm = (Math.random() * 3) | 0;
+        p.gr = .04 + Math.pow(Math.random(), .75) * .95;
+        p.ga = arm * 2.094 + Math.log(p.gr * 10 + 1) * 2.4 + g * (.18 + .3 * p.gr);
+      }
+    }
+    function galaxy(p, t){
+      var cx = W * .64, cy = H * .46, R = Math.max(W, H) * .78;
+      var ang = p.ga + t * .00005 / (.3 + p.gr);
+      var r = p.gr * R;
+      var x = cx + Math.cos(ang) * r, y = cy + Math.sin(ang) * r * .5;
+      return [x + Math.sin(t * .0003 + p.ph) * 12, y + Math.cos(t * .00025 + p.ph * 1.3) * 8];
     }
     function slot(){
       if (!slotEl || homeEl.hidden) return null;
@@ -698,8 +761,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
           tx = ds.x + (pu[0] * cs - pu[1] * sn) * sz; ty = ds.y + (pu[0] * sn + pu[1] * cs) * sz; fast = true;
         } else if (p.logo && !free){
           e = Math.max(0, Math.min(1, (S - p.st) / .55)); e = e * e * (3 - 2 * e);
-          var spx = p.sx * W + Math.sin(t * .0003 + p.ph) * 30;
-          var spy = ((p.sy * H + t * p.fall * .02) % (H + 40)) - 20;
+          var gq = galaxy(p, t), spx = gq[0], spy = gq[1];
           if (home && (still || t > p.delay)){
             var hx = home.left + p.hx * home.width, hy = home.top + p.hy * home.height;
             if (!still){
@@ -716,6 +778,8 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
           p.gs = ((p.gs || Math.random()) + .0016) % 1;
           var q = perimeter(gathers[p.gi % gathers.length], p.gs, 6 + (p.ph * 4));
           tx = q[0]; ty = q[1]; fast = true;
+        } else if (!p.logo){
+          var ga2 = galaxy(p, t); tx = ga2[0]; ty = ga2[1];
         }
 
         /* fully scattered and fully faded: park on target, skip the work */
@@ -838,6 +902,18 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
       if (running) raf = requestAnimationFrame(frame);
     }
 
+    /* Extra formers that build text out of the scaffold, sweeping left to right */
+    function formMore(targets){
+      var now = performance.now(), minX = Infinity, maxX = -Infinity, base = formers.length;
+      targets.forEach(function(t){ if (t[0] < minX) minX = t[0]; if (t[0] > maxX) maxX = t[0]; });
+      var span = (maxX - minX) || 1;
+      targets.forEach(function(tp){
+        var src = base ? formers[(Math.random() * base) | 0] : null;
+        formers.push({x:src ? src.x + rnd(-20, 20) : rnd(0, W), y:src ? src.y + rnd(-20, 20) : rnd(0, H), vx:rnd(-1, 1), vy:rnd(-1, 1),
+          tx:tp[0], ty:tp[1], fs:'rgb(' + tp[2] + ')', r:tp[3], delay:now + (tp[0] - minX) / span * 650 + rnd(0, 140), arr:0, a:1.2});
+      });
+    }
+
     function start(){ if (running) return; running = true; raf = requestAnimationFrame(frame); }
     function stop(){ running = false; cancelAnimationFrame(raf); }
     function drawStill(){ if (still && !easy()) frame(performance.now()); }
@@ -899,7 +975,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
     window.addEventListener('pointermove', function(e){
       if (mouse.on){ mouse.vx = mouse.vx * .6 + (e.clientX - mouse.x) * .4; mouse.vy = mouse.vy * .6 + (e.clientY - mouse.y) * .4;
         var l = Math.sqrt(mouse.vx * mouse.vx + mouse.vy * mouse.vy) || 1; mouse.dx = mouse.vx / l; mouse.dy = mouse.vy / l; }
-      mouse.x = e.clientX; mouse.y = e.clientY; mouse.on = true;
+      mouse.x = e.clientX; mouse.y = e.clientY; mouse.on = true; mouse.moved = performance.now();
     }, {passive:true});
     window.addEventListener('pointerdown', function(e){
       mouse.x = e.clientX; mouse.y = e.clientY;
@@ -917,7 +993,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
     if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', refresh);
 
     build();
-    return {refresh:refresh, swarm:swarm, shatter:shatter, form:form, releaseForm:releaseForm};
+    return {refresh:refresh, swarm:swarm, shatter:shatter, form:form, formMore:formMore, releaseForm:releaseForm};
   })();
 
   /* ---------- Easy read toggle ---------- */
@@ -939,6 +1015,158 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, function(){ status.textContent = email; });
     else status.textContent = email;
   });
+
+  /* ---------- Contact tablet: dot wallpaper, dot app icons, app launch ---------- */
+  (function(){
+    var tablet = document.getElementById('tablet'); if (!tablet) return;
+    var screen = document.getElementById('tabScreen'), home = document.getElementById('tabHome');
+    var wall = document.getElementById('tabWall'), wctx = wall.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), running = false, raf = 0, visible = false;
+    var WC = ['168,100,74','222,150,120','158,184,214','178,180,214','236,176,140','123,70,54'];
+    var wdots = [], icons = [], mouse = {x:-9999, y:-9999, on:false};
+
+    /* clock */
+    function tick(){ var d = new Date(); document.getElementById('tabTime').textContent = d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2); }
+    tick(); setInterval(tick, 20000);
+
+    /* wallpaper: a small spiral of dust */
+    for (var i = 0; i < 260; i++){
+      var arm = (Math.random() * 2) | 0, gr = .03 + Math.pow(Math.random(), .8) * .9;
+      wdots.push({gr:gr, ga:arm * 3.1416 + Math.log(gr * 10 + 1) * 2.2 + (Math.random() - .5) * .7, r:rnd(.5, 2), c:'rgb(' + pick(WC) + ')', a:rnd(.25, .7), ph:rnd(0, 6.28), x:0, y:0, vx:0, vy:0});
+    }
+
+    /* icons: rounded tile + glyph, sampled into dots */
+    function iconPoints(kind, S){
+      var c = document.createElement('canvas'); c.width = c.height = S;
+      var x = c.getContext('2d'), g = x.createLinearGradient(0, 0, S, S);
+      if (kind === 'mail'){ g.addColorStop(0, '#c98a6c'); g.addColorStop(1, '#7b4636'); }
+      else { g.addColorStop(0, '#a9bcd8'); g.addColorStop(1, '#6f7fa3'); }
+      var rr = S * .24; x.fillStyle = g; x.beginPath();
+      x.moveTo(rr, 0); x.arcTo(S, 0, S, S, rr); x.arcTo(S, S, 0, S, rr); x.arcTo(0, S, 0, 0, rr); x.arcTo(0, 0, S, 0, rr); x.fill();
+      x.strokeStyle = '#fff6ee'; x.fillStyle = '#fff6ee'; x.lineWidth = S * .06; x.lineJoin = 'round'; x.lineCap = 'round';
+      if (kind === 'mail'){
+        x.strokeRect(S * .22, S * .32, S * .56, S * .38);
+        x.beginPath(); x.moveTo(S * .22, S * .33); x.lineTo(S * .5, S * .54); x.lineTo(S * .78, S * .33); x.stroke();
+      } else {
+        x.beginPath(); x.arc(S * .5, S * .38, S * .12, 0, 6.283); x.fill();
+        x.beginPath(); x.moveTo(S * .26, S * .76); x.quadraticCurveTo(S * .5, S * .44, S * .74, S * .76); x.closePath(); x.fill();
+      }
+      var data = x.getImageData(0, 0, S, S).data, pts = [], step = S / 34;
+      for (var yy = 0; yy < S; yy += step){
+        for (var xx = 0; xx < S; xx += step){
+          var px = (xx + (Math.random() - .5) * step * .5) | 0, py = (yy + (Math.random() - .5) * step * .5) | 0;
+          if (px < 0 || py < 0 || px >= S || py >= S) continue;
+          var o = (py * S + px) * 4; if (data[o + 3] < 140) continue;
+          var glyph = data[o] > 240 && data[o + 1] > 230;
+          pts.push({hx:px / S, hy:py / S, c:'rgb(' + data[o] + ',' + data[o + 1] + ',' + data[o + 2] + ')', r: glyph ? rnd(.9, 1.5) : rnd(.7, 1.3), glyph:glyph});
+        }
+      }
+      return pts;
+    }
+    tablet.querySelectorAll('canvas.icon').forEach(function(cv){
+      var pts = iconPoints(cv.getAttribute('data-icon'), 160);
+      pts.forEach(function(p){ p.x = p.hx; p.y = p.hy; p.vx = 0; p.vy = 0; p.ph = rnd(0, 6.28); });
+      icons.push({cv:cv, ctx:cv.getContext('2d'), pts:pts, hover:false, burst:0});
+      var btn = cv.parentElement;
+      btn.addEventListener('pointerenter', function(){ icons.forEach(function(ic){ if (ic.cv === cv) ic.hover = true; }); });
+      btn.addEventListener('pointerleave', function(){ icons.forEach(function(ic){ if (ic.cv === cv) ic.hover = false; }); });
+    });
+
+    function size(){
+      var r = screen.getBoundingClientRect();
+      wall.width = r.width * dpr; wall.height = r.height * dpr;
+      icons.forEach(function(ic){ var s = ic.cv.clientWidth; ic.cv.width = s * dpr; ic.cv.height = s * dpr; ic.s = s; ic.calm = 0; });
+    }
+
+    function frame(now){
+      var r = screen.getBoundingClientRect(), W = r.width, H = r.height, still = calm();
+      wctx.setTransform(dpr, 0, 0, dpr, 0, 0); wctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < wdots.length; i++){
+        var d = wdots[i], ang = d.ga + (still ? 0 : now * .00006 / (.3 + d.gr));
+        var tx = W * .5 + Math.cos(ang) * d.gr * W * .7, ty = H * .5 + Math.sin(ang) * d.gr * H * .45;
+        if (still || !d.x){ d.x = tx; d.y = ty; }
+        else {
+          if (mouse.on){ var dx = d.x - mouse.x, dy = d.y - mouse.y, dd = Math.sqrt(dx * dx + dy * dy) || 1;
+            if (dd < 70){ var f = (1 - dd / 70) * .9; d.vx += dx / dd * f; d.vy += dy / dd * f; } }
+          d.vx = (d.vx + (tx - d.x) * .01) * .9; d.vy = (d.vy + (ty - d.y) * .01) * .9; d.x += d.vx; d.y += d.vy;
+        }
+        wctx.globalAlpha = d.a * (still ? 1 : (.6 + .4 * Math.sin(now * .0015 + d.ph)));
+        wctx.fillStyle = d.c; wctx.beginPath(); wctx.arc(d.x, d.y, d.r, 0, 6.283); wctx.fill();
+      }
+      wctx.globalAlpha = 1;
+
+      icons.forEach(function(ic){
+        var c = ic.ctx, s = ic.s; if (!s) return;
+        if (!still && !ic.hover && ic.burst < now && ic.calm > 40) return;
+        var moving = 0;
+        c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, s, s);
+        var br = r && ic.cv.getBoundingClientRect(), mx = (mouse.x + r.left - br.left) / s, my = (mouse.y + r.top - br.top) / s;
+        for (var i = 0; i < ic.pts.length; i++){
+          var p = ic.pts[i], tx = p.hx, ty = p.hy;
+          if (!still){
+            if (ic.hover){
+              var dx = p.x - mx, dy = p.y - my, dd = Math.sqrt(dx * dx + dy * dy) || 1;
+              if (dd < .28){ var f = (1 - dd / .28) * .006; p.vx += dx / dd * f; p.vy += dy / dd * f; }
+            }
+            if (ic.burst > now){ var bx = p.x - .5, by = p.y - .5, bl = Math.sqrt(bx * bx + by * by) || 1; p.vx += bx / bl * .01; p.vy += by / bl * .01; }
+            p.vx = (p.vx + (tx - p.x) * .08) * .82; p.vy = (p.vy + (ty - p.y) * .08) * .82;
+            p.x += p.vx; p.y += p.vy;
+            if (Math.abs(p.vx) + Math.abs(p.vy) > .0004) moving++;
+          } else { p.x = tx; p.y = ty; }
+          c.fillStyle = p.c; c.beginPath(); c.arc(p.x * s, p.y * s, p.r * s / 80, 0, 6.283); c.fill();
+        }
+        ic.calm = moving ? 0 : (ic.calm || 0) + 1;
+      });
+      if (running) raf = requestAnimationFrame(frame);
+    }
+    function start(){ if (running) return; running = true; raf = requestAnimationFrame(frame); }
+    function stop(){ running = false; cancelAnimationFrame(raf); }
+    function refresh(){
+      if (calm()){ stop(); frame(performance.now()); return; }
+      if (visible && !document.hidden) start(); else stop();
+    }
+    screen.addEventListener('pointermove', function(e){ var r = screen.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true; });
+    screen.addEventListener('pointerleave', function(){ mouse.on = false; });
+
+    /* app launch: the icon bursts, then the app grows out of it */
+    var openApp = null;
+    function launch(btn){
+      var id = btn.getAttribute('data-app'), view = document.getElementById('app-' + id);
+      var sr = screen.getBoundingClientRect(), ir = btn.querySelector('.icon').getBoundingClientRect();
+      icons.forEach(function(ic){ if (btn.contains(ic.cv)) ic.burst = performance.now() + 160; });
+      view.hidden = false;
+      if (!calm()){
+        view.style.transition = 'none';
+        view.style.transform = 'translate(' + (ir.left - sr.left) + 'px,' + (ir.top - sr.top) + 'px) scale(' + (ir.width / sr.width) + ',' + (ir.height / sr.height) + ')';
+        view.style.opacity = '0'; view.style.borderRadius = '40px';
+        view.getBoundingClientRect();
+        view.style.transition = '';
+        requestAnimationFrame(function(){ view.style.transform = 'none'; view.style.opacity = '1'; view.style.borderRadius = '0'; });
+      }
+      openApp = {view:view, btn:btn};
+      view.querySelector('[tabindex="-1"]').focus({preventScroll:true});
+    }
+    function close(){
+      if (!openApp) return;
+      var o = openApp; openApp = null;
+      if (calm()){ o.view.hidden = true; o.btn.focus({preventScroll:true}); return; }
+      o.view.style.transform = 'scale(.92)'; o.view.style.opacity = '0';
+      setTimeout(function(){ o.view.hidden = true; o.view.style.transform = ''; o.view.style.opacity = ''; }, 320);
+      o.btn.focus({preventScroll:true});
+    }
+    tablet.querySelectorAll('.app').forEach(function(b){ b.addEventListener('click', function(){ launch(b); }); });
+    tablet.querySelectorAll('.home-btn').forEach(function(b){ b.addEventListener('click', close); });
+    tablet.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){ visible = en[0].isIntersecting; refresh(); }, {rootMargin:'100px'}).observe(tablet);
+    } else visible = true;
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ size(); refresh(); }, 150); });
+    document.addEventListener('visibilitychange', refresh);
+    document.getElementById('easyToggle').addEventListener('click', function(){ setTimeout(function(){ size(); refresh(); }, 0); });
+    size(); refresh();
+  })();
 
   /* ---------- Spotlight ---------- */
   document.querySelectorAll('.spot').forEach(function(c){
@@ -1007,6 +1235,7 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
       seq(list, true, step * 2.5);
     }
     function text(el, every, twoRow){
+      if (!el) return;
       var gl = glyphs(el), byLine = {};
       gl.forEach(function(g, i){ if (i % every === 0 && g.y < H){ (byLine[g.line] = byLine[g.line] || []).push(g); } });
       Object.keys(byLine).forEach(function(k){
@@ -1035,6 +1264,38 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
     return {pts:pts, edges:edges};
   }
 
+  /* Dot targets that fill the actual letter shapes of these elements */
+  function textTargets(els){
+    var W = window.innerWidth, H = window.innerHeight, c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    var x = c.getContext('2d'), out = [];
+    els.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > H) return;
+      var cs = getComputedStyle(el), fsz = parseFloat(cs.fontSize), col = rgbOf(cs.color);
+      x.clearRect(0, 0, W, H);
+      x.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      x.fillStyle = '#000'; x.textBaseline = 'alphabetic';
+      glyphs(el).forEach(function(g){
+        if (g.y > H) return;
+        var m = x.measureText(g.ch);
+        var asc = m.fontBoundingBoxAscent || fsz * .8, des = m.fontBoundingBoxDescent || fsz * .2;
+        x.fillText(g.ch, g.x, g.y + (g.h - (asc + des)) / 2 + asc);
+      });
+      var x0 = Math.max(0, r.left | 0), y0 = Math.max(0, r.top | 0), w = Math.min(W - x0, Math.ceil(r.width) + 2), h = Math.min(H - y0, Math.ceil(r.height) + 2);
+      if (w <= 0 || h <= 0) return;
+      var data = x.getImageData(x0, y0, w, h).data, step = Math.max(1.6, Math.min(3.4, fsz / 20));
+      for (var yy = 0; yy < h; yy += step){
+        for (var xx = 0; xx < w; xx += step){
+          var px = (xx + (Math.random() - .5) * step * .6) | 0, py = (yy + (Math.random() - .5) * step * .6) | 0;
+          if (px < 0 || py < 0 || px >= w || py >= h) continue;
+          if (data[(py * w + px) * 4 + 3] > 110) out.push([x0 + px, y0 + py, col, Math.max(.6, Math.min(1.5, step * .42)) * (.7 + Math.random() * .6)]);
+        }
+      }
+    });
+    return out;
+  }
+
   cats.forEach(function(card){
     card.addEventListener('click', function(e){
       if (calm() || busy) return;           /* plain navigation in easy read or reduced motion */
@@ -1052,15 +1313,20 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
       /* 3. the chosen card breaks into dots that rebuild as the new page's wireframe */
       setTimeout(function(){
         var starts = samplePts(card);
-        view.classList.add('forming');
+        var heads = [view.querySelector('h1')].concat([].slice.call(view.querySelectorAll('.svc h3, .approach h2')));
+        heads.forEach(function(h){ h.classList.add('bh'); });
+        view.classList.add('forming', 'building');
         history.pushState(null, '', '#/' + slug);
         route();
         requestAnimationFrame(function(){
           var bp = blueprint(view);
           field.form(starts, bp.pts, bp.edges, 900);
-          setTimeout(function(){ view.classList.remove('forming'); }, 1500);
-          setTimeout(function(){ field.releaseForm(); }, 2000);
-          setTimeout(function(){ busy = false; }, 2300);
+          /* key headings are then built out of the scaffold, dot by dot */
+          setTimeout(function(){ field.formMore(textTargets(heads)); }, 950);
+          setTimeout(function(){ view.classList.remove('forming'); }, 1150);
+          setTimeout(function(){ view.classList.remove('building'); }, 2350);
+          setTimeout(function(){ field.releaseForm(); }, 2650);
+          setTimeout(function(){ busy = false; }, 3000);
         });
       }, 1550);
     });
