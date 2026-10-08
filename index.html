@@ -1,1 +1,793 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarah Rae Consulting</title>
+<meta name="description" content="Sarah Rae Consulting partners with organisations to strengthen capability, enable change and build innovative and inclusive ways of working, bringing together learning, technology, organisational development and people strategy.">
+<meta property="og:title" content="Sarah Rae Consulting">
+<meta property="og:description" content="Diversity, equity and inclusion. Ethical AI and digital capability. Talent and workforce strategy.">
+<meta property="og:type" content="website">
+<!-- DOMAIN TBC: once confirmed, uncomment and replace YOUR-DOMAIN:
+<link rel="canonical" href="https://YOUR-DOMAIN/">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta property="og:image" content="https://YOUR-DOMAIN/assets/logo-monogram.png">
+-->
+<link rel="icon" href="assets/logo-monogram.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Lato:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:wght@400;700&display=swap" rel="stylesheet">
+<noscript><style>.view[hidden]{display:block!important}.logo-slot img{opacity:1!important}</style></noscript>
 
+<style>
+:root{
+  --cream:#fdf4ec;--cream-2:#fbe9dc;--peach:#f2b49b;
+  --copper:#a8644a;--copper-deep:#7b4636;
+  --ink:#3a2620;--ink-soft:#5e463d;
+  --sky:#a9c7e8;--lilac:#c7b6e6;
+  --card:rgba(255,250,245,.8);--line:rgba(123,70,54,.18);
+  --focus:#3b5bdb;--radius:18px;
+  --serif:"Libre Caslon Text", Georgia, serif;
+  --sans:"Lato", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+  --size:1rem;--leading:1.65;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-size:calc(var(--size) * 1.0625);line-height:var(--leading);
+  background-image:
+    radial-gradient(60vw 40vw at 0% 0%, rgba(169,199,232,.30), transparent 60%),
+    radial-gradient(50vw 40vw at 100% 10%, rgba(242,180,155,.35), transparent 60%),
+    radial-gradient(60vw 50vw at 80% 100%, rgba(199,182,230,.25), transparent 60%);
+  background-attachment:fixed;
+}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1}
+.container{width:min(1120px, 100% - 32px);margin-inline:auto}
+a{color:var(--copper-deep)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+[tabindex="-1"]:focus{outline:none}
+.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;z-index:40;text-decoration:none}
+.skip:focus{top:12px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[hidden]{display:none!important}
+
+/* Header */
+header.site{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2);
+  background:rgba(253,244,236,.72);border-bottom:1px solid var(--line);
+}
+.bar{display:flex;align-items:center;gap:20px;min-height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--copper-deep);margin-right:auto}
+.brand img,.mono-fallback{width:42px;height:42px;border-radius:50%}
+.mono-fallback{display:none;place-items:center;border:2px solid var(--copper);font-family:var(--serif);font-size:.8rem;font-weight:700;color:var(--copper-deep);background:var(--cream-2)}
+.no-logo img{display:none}.no-logo .mono-fallback{display:grid}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-text b{font-family:var(--serif);font-size:1.15rem}
+.brand-text span{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;font-weight:700}
+nav.primary ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+nav.primary a{text-decoration:none;color:var(--ink-soft);font-size:.95rem}
+nav.primary a:hover{color:var(--copper-deep)}
+.toggle{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 .78rem var(--mono);padding:7px 10px 7px 12px;border-radius:999px;cursor:pointer}
+.toggle .track{width:36px;height:20px;border-radius:999px;background:#d9c3b6;position:relative;transition:background .25s}
+.toggle .track::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.toggle[aria-checked="true"] .track{background:var(--copper-deep)}
+.toggle[aria-checked="true"] .track::after{transform:translateX(16px)}
+
+/* Hero */
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:56px 0 48px}
+.logo-slot{position:relative;width:min(440px, 100%);aspect-ratio:1;justify-self:center}
+.logo-slot img{width:100%;height:100%;object-fit:contain;transition:opacity .4s}
+html.js body:not(.easy) .logo-slot img{opacity:0}
+.eyebrow{font:500 .78rem var(--mono);letter-spacing:.08em;color:var(--copper);text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--copper);display:inline-block}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.3rem, 5.4vw, 4.4rem);line-height:1.06;letter-spacing:-.01em;margin:18px 0 22px;color:var(--copper-deep);max-width:15ch}
+h1 em{font-style:italic;color:var(--copper)}
+.lead{font-size:clamp(1.05rem, 1.6vw, 1.25rem);max-width:58ch;color:var(--ink-soft);margin:0 0 32px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;border:1px solid transparent;font-size:.98rem;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--copper-deep);color:#fff8f2}
+.btn.primary:hover{background:#5f3327}
+.btn.ghost{border-color:var(--copper);color:var(--copper-deep);background:rgba(255,250,245,.5)}
+.btn.ghost:hover{background:var(--card)}
+.hint{margin-top:36px;font:400 .75rem var(--mono);color:var(--ink-soft);opacity:.85}
+.hint kbd{font:inherit;border:1px solid var(--line);border-radius:5px;padding:1px 6px;background:var(--card)}
+
+/* Sections */
+section{padding:88px 0;scroll-margin-top:72px}
+.sec-head{display:grid;gap:10px;margin-bottom:40px;max-width:720px}
+.idx{font:500 .78rem var(--mono);color:var(--copper);letter-spacing:.08em}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem, 4vw, 2.8rem);line-height:1.15;margin:0;color:var(--copper-deep)}
+.sec-head p{margin:6px 0 0;color:var(--ink-soft)}
+.glass{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+/* Spotlight that follows the cursor */
+.spot{position:relative;overflow:hidden}
+.spot::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(242,180,155,.45), transparent 60%)}
+.spot:hover::before{opacity:1}
+.spot > *{position:relative}
+
+/* Category cards */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cat{
+  display:flex;flex-direction:column;min-height:380px;padding:28px 26px 24px;text-decoration:none;color:var(--ink);
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease, opacity .7s ease, filter .7s ease;
+}
+.cat:hover{transform:translateY(-4px);border-color:rgba(168,100,74,.45);box-shadow:0 18px 40px -20px rgba(123,70,54,.5)}
+.tag{font:500 .72rem var(--mono);letter-spacing:.1em;color:var(--copper);display:flex;justify-content:space-between}
+.cat h3{font-family:var(--serif);font-weight:400;font-size:1.65rem;line-height:1.2;margin:18px 0 12px;color:var(--copper-deep)}
+.cat p{margin:0 0 18px;color:var(--ink-soft)}
+.incl{list-style:none;margin:0 0 22px;padding:0;border-top:1px dashed var(--line)}
+.incl li{font-size:.92rem;padding:8px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
+.incl li::before{content:"+";font-family:var(--mono);color:var(--copper)}
+.go{margin-top:auto;font:500 .8rem var(--mono);color:var(--copper-deep);letter-spacing:.06em;display:inline-flex;gap:8px;align-items:center}
+.go span{transition:transform .25s}
+.cat:hover .go span{transform:translateX(4px)}
+.cat.dissolve{opacity:0;filter:blur(8px);transform:scale(.94);pointer-events:none}
+.cat.chosen{border-color:var(--copper);box-shadow:0 0 0 1px var(--copper), 0 24px 50px -24px rgba(123,70,54,.6)}
+
+.expander{position:fixed;z-index:30;background:var(--cream);border:1px solid var(--copper);border-radius:var(--radius);overflow:hidden;
+  transition:top .6s cubic-bezier(.7,0,.2,1), left .6s cubic-bezier(.7,0,.2,1), width .6s cubic-bezier(.7,0,.2,1), height .6s cubic-bezier(.7,0,.2,1), border-radius .6s, opacity .45s ease}
+.expander .ex-title{position:absolute;left:26px;top:58px;font-family:var(--serif);font-size:1.65rem;color:var(--copper-deep);transition:all .6s cubic-bezier(.7,0,.2,1)}
+.expander.open .ex-title{font-size:clamp(2.3rem, 5.4vw, 4.4rem);top:22vh;left:max(16px, calc((100vw - 1120px)/2))}
+.expander.fade{opacity:0}
+
+/* Engagement scale */
+.scale{padding:28px}
+.scale ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.scale ol::before{content:"";position:absolute;left:10%;right:10%;top:15px;height:2px;background:linear-gradient(90deg, var(--sky), var(--peach), var(--copper))}
+.scale li{text-align:center;padding:0 6px;position:relative}
+.scale .node{width:32px;height:32px;border-radius:50%;margin:0 auto 12px;background:var(--cream);border:2px solid var(--copper);display:grid;place-items:center;font:500 .7rem var(--mono);color:var(--copper-deep);transition:background .25s,color .25s,transform .25s}
+.scale li:hover .node{background:var(--copper-deep);color:#fff;transform:scale(1.12)}
+.scale b{display:block;font-size:.95rem}
+.scale small{display:block;font:400 .72rem var(--mono);color:var(--ink-soft);margin-top:4px}
+.scale-note{margin:24px 0 0;color:var(--ink-soft);max-width:62ch}
+
+/* About */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.about p{margin:0 0 18px;max-width:62ch}
+.about .big{font-family:var(--serif);font-size:clamp(1.3rem, 2.4vw, 1.7rem);line-height:1.4;color:var(--copper-deep)}
+.spec{padding:8px 22px}
+.spec dl{margin:0}
+.spec div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.spec div:last-child{border-bottom:0}
+.spec dt{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--copper);padding-top:3px}
+.spec dd{margin:0}
+
+/* Contact */
+.contact{text-align:center;border-radius:28px;padding:56px 24px}
+.contact h2{margin-bottom:12px}
+.contact p{max-width:52ch;margin:0 auto 28px;color:var(--ink-soft)}
+.contact .ctas{justify-content:center}
+.copy-status{display:block;min-height:1.4em;margin-top:14px;font:400 .78rem var(--mono);color:var(--copper-deep)}
+
+/* Detail views */
+.view{padding:48px 0 40px;min-height:calc(100vh - 68px)}
+.back{display:inline-flex;gap:8px;font:500 .8rem var(--mono);text-decoration:none;color:var(--copper-deep);margin-bottom:32px;padding:6px 0}
+.back:hover{text-decoration:underline}
+.view h1{max-width:18ch;margin-top:12px}
+.view .lead{max-width:64ch}
+.svcs{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;margin:48px 0 64px}
+.svc{padding:26px 24px}
+.svc h3{font-family:var(--serif);font-weight:700;font-size:1.15rem;line-height:1.3;margin:12px 0 8px;color:var(--ink)}
+.svc p{margin:0 0 14px;color:var(--ink-soft);font-size:.97rem}
+.svc ul{margin:0;padding:0;list-style:none}
+.svc li{font-size:.92rem;padding:6px 0;border-top:1px dashed var(--line);display:flex;gap:10px}
+.svc li::before{content:"+";font-family:var(--mono);color:var(--copper)}
+.approach{padding:32px 28px;margin-bottom:24px}
+.approach h2{font-size:clamp(1.5rem, 3vw, 2rem);margin-bottom:24px}
+.approach ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.approach li{counter-increment:s}
+.approach li::before{content:"0" counter(s);display:block;font:500 .75rem var(--mono);color:var(--copper);margin-bottom:8px}
+.approach b{display:block;margin-bottom:4px}
+.approach span{color:var(--ink-soft);font-size:.97rem}
+.view-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:28px;margin-top:24px}
+.view-foot p{margin:0;max-width:48ch}
+.next{font:500 .8rem var(--mono);text-decoration:none;color:var(--copper-deep)}
+.next:hover{text-decoration:underline}
+
+footer{padding:36px 0 48px;font:400 .75rem var(--mono);color:var(--ink-soft)}
+footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- Easy read mode ---------- */
+body.easy{
+  --size:1.18rem;--leading:1.85;
+  --sans:"Atkinson Hyperlegible", Verdana, sans-serif;
+  --serif:"Atkinson Hyperlegible", Verdana, sans-serif;
+  --mono:"Atkinson Hyperlegible", Verdana, sans-serif;
+  --ink:#1c120e;--ink-soft:#2e211c;--copper-deep:#5a2c1f;--copper:#6e3a29;
+  --card:#ffffff;--line:rgba(60,30,20,.4);
+  background:#fffaf5;background-image:none;letter-spacing:.015em;word-spacing:.06em;
+}
+body.easy #field,body.easy .hint{display:none}
+body.easy *,body.easy *::before,body.easy *::after{transition:none!important;animation:none!important}
+body.easy .reveal{opacity:1!important;transform:none!important}
+body.easy .glass,body.easy header.site{backdrop-filter:none;-webkit-backdrop-filter:none}
+body.easy header.site{background:#fffaf5}
+body.easy .cat:hover{transform:none}
+body.easy .spot::before{display:none}
+body.easy a{text-decoration:underline;text-underline-offset:3px}
+body.easy .btn,body.easy .cat{text-decoration:none}
+body.easy h1{max-width:20ch;font-weight:700}
+body.easy h2,body.easy .cat h3{font-weight:700}
+body.easy p,body.easy li{max-width:60ch}
+body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spacing:.02em;text-transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+@media (max-width:900px){
+  .cats{grid-template-columns:1fr}
+  .cat{min-height:0}
+  .approach ol{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  nav.primary{display:none}
+  .hero{grid-template-columns:1fr;gap:8px;padding-top:28px;min-height:0}
+  .logo-slot{order:-1;width:min(68vw, 290px)}
+  .about{grid-template-columns:1fr}
+  .scale ol{grid-template-columns:1fr;gap:18px}
+  .scale ol::before{left:15px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background:linear-gradient(180deg, var(--sky), var(--peach), var(--copper))}
+  .scale li{display:grid;grid-template-columns:32px 1fr;gap:14px;text-align:left;align-items:start}
+  .scale .node{margin:0}
+  .spec div{grid-template-columns:1fr;gap:2px}
+  section{padding:64px 0}
+}
+@media (max-width:480px){
+  .toggle .label-long{display:none}
+  .brand-text span{letter-spacing:.24em}
+}
+</style>
+</head>
+<body>
+<script>
+  document.documentElement.classList.add('js');
+  try{ if(localStorage.getItem('src-easy') === '1') document.body.classList.add('easy'); }catch(e){}
+</script>
+
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="wrap">
+<header class="site">
+  <div class="container bar">
+    <a class="brand" href="#top" aria-label="Sarah Rae Consulting, home">
+      <img src="assets/logo-monogram.png" alt="" width="42" height="42" data-logo>
+      <span class="mono-fallback" aria-hidden="true">SRC</span>
+      <span class="brand-text"><b>Sarah Rae</b><span>Consulting</span></span>
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#engagements">Engagements</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="toggle" id="easyToggle" role="switch" aria-checked="false" type="button">
+      <span>Easy read<span class="label-long"> mode</span></span>
+      <span class="track" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<div id="home">
+  <div class="container hero" id="top">
+    <div>
+      <div class="eyebrow"><span>Learning</span><span class="dot" aria-hidden="true"></span><span>Technology</span><span class="dot" aria-hidden="true"></span><span>Organisational development</span><span class="dot" aria-hidden="true"></span><span>People strategy</span></div>
+      <h1>Capability, change and <em>inclusive</em> ways of working.</h1>
+      <p class="lead">I partner with organisations to strengthen capability, enable change and build innovative and inclusive ways of working, bringing together learning, technology, organisational development and people strategy.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#contact">Start a conversation</a>
+        <a class="btn ghost" href="#services">Explore services</a>
+      </div>
+      <p class="hint" aria-hidden="true" id="hint">// move through the dust. <kbd>click</kbd> to send a ripple.</p>
+    </div>
+    <div class="logo-slot" id="logoSlot"><img src="assets/logo-monogram.png" alt="Sarah Rae Consulting monogram"></div>
+  </div>
+
+  <section id="services" aria-labelledby="services-h">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="idx">01 / SERVICES</span>
+        <h2 id="services-h">Three practice areas</h2>
+        <p>Each area brings strategy, learning and systems together. Choose one to see what it includes.</p>
+      </div>
+      <div class="cats">
+        <a class="cat glass spot reveal" href="#/dei" data-slug="dei">
+          <div class="tag"><span>01</span><span>DEI</span></div>
+          <h3>Diversity, equity and inclusion</h3>
+          <p>Moving inclusion from intention into everyday practice, across policy, systems, leadership and culture.</p>
+          <ul class="incl"><li>DEI advisory and education</li><li>Leadership development</li></ul>
+          <span class="go">EXPLORE <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="cat glass spot reveal" href="#/ethical-ai" data-slug="ethical-ai">
+          <div class="tag"><span>02</span><span>AI + DIGITAL</span></div>
+          <h3>Ethical AI and digital capability</h3>
+          <p>Helping people adopt AI and digital tools safely and confidently, with learning and systems that fit how they work.</p>
+          <ul class="incl"><li>Ethical AI education, adoption and workforce capability</li><li>Digital learning and enablement strategy</li><li>Instructional and learning experience design</li><li>LMS and CRM strategy, implementation and integration</li></ul>
+          <span class="go">EXPLORE <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="cat glass spot reveal" href="#/talent" data-slug="talent">
+          <div class="tag"><span>03</span><span>TALENT</span></div>
+          <h3>Talent and workforce strategy</h3>
+          <p>Knowing the capability you have, the capability you need, and how to close the gap.</p>
+          <ul class="incl"><li>Talent and workforce strategy</li><li>Capability frameworks and organisational development</li><li>Organisational risk and capability advisory</li></ul>
+          <span class="go">EXPLORE <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="engagements" aria-labelledby="eng-h">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="idx">02 / ENGAGEMENTS</span>
+        <h2 id="eng-h">Start where you need to</h2>
+      </div>
+      <div class="scale glass reveal">
+        <ol>
+          <li><span class="node" aria-hidden="true">01</span><div><b>Targeted advisory</b><small>focused input</small></div></li>
+          <li><span class="node" aria-hidden="true">02</span><div><b>Strategic review</b><small>diagnose and recommend</small></div></li>
+          <li><span class="node" aria-hidden="true">03</span><div><b>Design</b><small>frameworks and solutions</small></div></li>
+          <li><span class="node" aria-hidden="true">04</span><div><b>Development</b><small>build and configure</small></div></li>
+          <li><span class="node" aria-hidden="true">05</span><div><b>Implementation</b><small>launch and embed</small></div></li>
+        </ol>
+        <p class="scale-note">Engagements range from targeted advisory and strategic reviews through to end-to-end design, development and implementation. You can bring me in at one point on this line, or for the whole of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="idx">03 / ABOUT</span>
+        <h2 id="about-h">The human side of technical solutions</h2>
+      </div>
+      <div class="about">
+        <div class="reveal">
+          <p class="big">Technology only works when it works for people. That's where I start.</p>
+          <p>I'm Rae, Principal Consultant at Sarah Rae Consulting, which I founded in 2020. Over more than 12 years I've worked across community services, registered training organisations and not-for-profits, and that grounding shapes every engagement.</p>
+          <p>My background in social welfare and organisational learning means I begin with the people in the system. Who has to use this? What do they need to do their best work? What gets in the way? Then I design the frameworks, learning and platforms to fit.</p>
+          <p>I bring people strategy and technical delivery together, so you don't have to translate between someone who understands your culture and someone who understands your systems.</p>
+        </div>
+        <aside class="spec glass reveal" aria-label="Quick facts">
+          <dl>
+            <div><dt>Name</dt><dd>Rae Galdes</dd></div>
+            <div><dt>Pronouns</dt><dd>they/them</dd></div>
+            <div><dt>Role</dt><dd>Principal Consultant</dd></div>
+            <div><dt>Qualifications</dt><dd>GradCert Organisational Learning<br>BSocSc (Social Welfare)</dd></div>
+            <div><dt>Experience</dt><dd>12+ years</dd></div>
+            <div><dt>Practice</dt><dd>Founded 2020</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="container">
+      <div class="contact glass reveal">
+        <span class="idx">04 / CONTACT</span>
+        <h2 id="contact-h">Let's talk</h2>
+        <p>If you're working through a capability, learning, inclusion or technology challenge, I'd welcome a conversation.</p>
+        <div class="ctas">
+          <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">sarahraeconsulting@gmail.com</a>
+          <button class="btn ghost" type="button" id="copyEmail">Copy email</button>
+          <a class="btn ghost" href="https://www.linkedin.com/in/raegaldes/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+        </div>
+        <span class="copy-status" role="status" aria-live="polite" id="copyStatus"></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ DEI ============ -->
+<article class="view" id="view-dei" data-title="Diversity, equity and inclusion" hidden aria-labelledby="dei-h">
+  <div class="container">
+    <a class="back" href="#services">← All services</a>
+    <div class="idx">SERVICES / 01 / DEI</div>
+    <h1 id="dei-h" tabindex="-1">Diversity, equity and inclusion</h1>
+    <p class="lead">Inclusion that holds up in practice. I help organisations find where policies, systems and everyday habits shut people out, then build the strategy, learning and leadership capability to change that.</p>
+    <div class="svcs">
+      <div class="svc glass spot reveal"><div class="tag"><span>ADVISORY</span><span>01</span></div><h3>DEI advisory</h3><p>Strategy, action plans and practical advice grounded in your data and your people's experience.</p>
+        <ul><li>Inclusion reviews of policy, process and systems</li><li>DEI strategy and action planning</li><li>Governance support for committees and employee networks</li><li>Inclusive recruitment and onboarding</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>EDUCATION</span><span>02</span></div><h3>DEI education</h3><p>Learning that builds understanding and confidence, designed to be accessible from the start.</p>
+        <ul><li>Workshops for staff and leaders</li><li>Gender diversity and trans inclusion</li><li>Neuroinclusion at work</li><li>Allyship and everyday inclusion</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>LEADERSHIP</span><span>03</span></div><h3>Leadership development</h3><p>Building leaders' capacity to lead change, lead inclusively and make sound decisions when it matters.</p>
+        <ul><li>Inclusive leadership programs</li><li>Leading through change</li><li>Psychological safety in teams</li></ul></div>
+    </div>
+    <div class="approach glass reveal">
+      <h2>How I work</h2>
+      <ol>
+        <li><b>Listen first</b><span>Data, documents and conversations with the people closest to the work.</span></li>
+        <li><b>Prioritise</b><span>Recommendations ranked by impact and effort, so you know where to start.</span></li>
+        <li><b>Embed</b><span>Built into systems, learning and leadership so it lasts beyond the project.</span></li>
+      </ol>
+    </div>
+    <div class="view-foot glass reveal">
+      <p>Want to talk about inclusion in your organisation? I'd welcome a conversation.</p>
+      <div class="ctas"><a class="btn primary" href="#contact">Get in touch</a><a class="next" href="#/ethical-ai">Next: Ethical AI →</a></div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ETHICAL AI ============ -->
+<article class="view" id="view-ethical-ai" data-title="Ethical AI and digital capability" hidden aria-labelledby="ai-h">
+  <div class="container">
+    <a class="back" href="#services">← All services</a>
+    <div class="idx">SERVICES / 02 / AI + DIGITAL</div>
+    <h1 id="ai-h" tabindex="-1">Ethical AI and digital capability</h1>
+    <p class="lead">AI and digital tools only deliver when people can use them well and safely. I help organisations build that capability, set sensible guardrails, and design the learning and systems that make adoption stick.</p>
+    <div class="svcs">
+      <div class="svc glass spot reveal"><div class="tag"><span>AI</span><span>01</span></div><h3>Ethical AI education, adoption and workforce capability</h3><p>Responsible AI literacy for leaders and teams, with the governance and change support that make adoption safe and useful.</p>
+        <ul><li>AI literacy programs by role</li><li>Responsible use guidelines and guardrails</li><li>AI governance and risk awareness</li><li>Adoption and change planning</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>ENABLEMENT</span><span>02</span></div><h3>Digital learning and enablement strategy</h3><p>A clear plan for how people learn new tools and ways of working, tied to the capability you need.</p>
+        <ul><li>Digital learning strategy and roadmaps</li><li>Enablement for system rollouts</li><li>Blended learning models</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>LXD</span><span>03</span></div><h3>Instructional and learning experience design</h3><p>Learning built around real tasks, accessible by default, and matched to how people will use it.</p>
+        <ul><li>eLearning and blended programs</li><li>Job aids and performance support</li><li>Accessibility reviews of learning</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>SYSTEMS</span><span>04</span></div><h3>LMS and CRM strategy, implementation and integration</h3><p>Choosing, configuring and connecting platforms so the technology supports the people using it.</p>
+        <ul><li>Platform selection and requirements</li><li>Configuration and implementation</li><li>Integrations and custom tools</li><li>Data, reporting and migration</li></ul></div>
+    </div>
+    <div class="approach glass reveal">
+      <h2>How I work</h2>
+      <ol>
+        <li><b>Start with the work</b><span>Real use cases and real tasks first, tools second.</span></li>
+        <li><b>Set clear guardrails</b><span>Guidance people can actually follow, matched to your risk appetite.</span></li>
+        <li><b>Measure and iterate</b><span>Track adoption and capability, then adjust what isn't landing.</span></li>
+      </ol>
+    </div>
+    <div class="view-foot glass reveal">
+      <p>Planning an AI rollout or a new platform? I'd welcome a conversation.</p>
+      <div class="ctas"><a class="btn primary" href="#contact">Get in touch</a><a class="next" href="#/talent">Next: Talent and workforce →</a></div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ TALENT ============ -->
+<article class="view" id="view-talent" data-title="Talent and workforce strategy" hidden aria-labelledby="talent-h">
+  <div class="container">
+    <a class="back" href="#services">← All services</a>
+    <div class="idx">SERVICES / 03 / TALENT</div>
+    <h1 id="talent-h" tabindex="-1">Talent and workforce strategy</h1>
+    <p class="lead">Knowing the capability you have, the capability you need, and how to close the gap. I help organisations plan their workforce, define what good looks like, and reduce the risks that capability gaps create.</p>
+    <div class="svcs">
+      <div class="svc glass spot reveal"><div class="tag"><span>WORKFORCE</span><span>01</span></div><h3>Talent and workforce strategy</h3><p>Understanding the skills you have and need, and how to attract, grow and keep the people who close the gap.</p>
+        <ul><li>Workforce planning and skills mapping</li><li>Attraction, development and retention strategy</li><li>Succession and career pathways</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>OD</span><span>02</span></div><h3>Capability frameworks and organisational development</h3><p>Frameworks that describe what good looks like, built to be used in recruitment, development and planning.</p>
+        <ul><li>Capability and competency frameworks</li><li>Organisation design and change</li><li>Performance and development processes</li></ul></div>
+      <div class="svc glass spot reveal"><div class="tag"><span>RISK</span><span>03</span></div><h3>Organisational risk and capability advisory</h3><p>Finding where capability gaps create risk, and building a realistic plan to close them.</p>
+        <ul><li>Capability gap and risk assessment</li><li>Compliance and mandatory learning review</li><li>Critical role and key person risk</li></ul></div>
+    </div>
+    <div class="approach glass reveal">
+      <h2>How I work</h2>
+      <ol>
+        <li><b>Map what you have</b><span>Skills, roles and data, as they really are today.</span></li>
+        <li><b>Define what you need</b><span>The capability your strategy depends on, in plain language.</span></li>
+        <li><b>Close the gap</b><span>A plan you can actually resource, with clear priorities.</span></li>
+      </ol>
+    </div>
+    <div class="view-foot glass reveal">
+      <p>Thinking about workforce capability or planning? I'd welcome a conversation.</p>
+      <div class="ctas"><a class="btn primary" href="#contact">Get in touch</a><a class="next" href="#/dei">Next: DEI →</a></div>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="container">
+    <span>&copy; <span id="yr">2026</span> Sarah Rae Consulting</span>
+    <span>Designed for everyone. Easy read mode in the header.</span>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var body = document.body;
+  var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function easy(){ return body.classList.contains('easy'); }
+  function calm(){ return easy() || reduceMQ.matches; }
+
+  /* Logo points, sampled from the SRC monogram (x,y in 0..1, base36 pairs) */
+  var LOGO = (function(s){
+    var d = '0123456789abcdefghijklmnopqrstuvwxyz', a = [];
+    function n(i){ return (d.indexOf(s[i]) * 36 + d.indexOf(s[i + 1])) / 1295; }
+    for (var i = 0; i + 3 < s.length; i += 4) a.push([n(i), n(i + 2)]);
+    return a;
+  })("hy2ri82rgm30gw2zik2wj22zfz39ho3ahx3di83afl3lge3mgl3oh23rh93qhy3mie3mim3oiy3qja3kk23pfw40ga3wir3wj042je42jo41fd4efm4bfz4fjl4ejw49f24pfa4pfm4kg14njo4ok14qk94meq50ex4xfe4xfo50jw4zkc4yel5cf058fb5dfo5ajy58ka5bek5lew5qfd5pfm5mjx5mk75qed60ek62ey60fa60jw61k95yea6dek6bex6ef86cfm6bjq6bjw6ek968ea6pek6oew6kfb6lja6njq6rk06lkb6oe96yem71ex70fb71fl73j06xjc72jm70jy6yeb7deo7bf27cfa7afq7eic7dj37fjc7ajm7ae97qek7rey7qfb7mfq7nip7oiy7qja7ljl7lec81eo81ey7wfa7wfq80g083i182ie82in7ziy83j97xee8aek8aew88fc89fl8afx8fhp8ahw8fic8cen8lf08mff8nfn8mg38mgm8pgy8lh88nhq8li98ljm8kka8oeo91f292fb8zfp8yfw90gp92hq93hz92iq8xiw8zj88zjm93jz92lm90ed9een9dex9bfa9afp9afy9age9dgn9bh29ehb9chq9ahy98ib9dik9bj39bja9ejq9bjw9dkd9eko9akz9ala9bm29bdp9pe09mey9lfb9rfk9qfy9kge9mgl9lk09lkk9pkx9old9mln9plx9od8a1eqa3ey9zfa9wfqa2fx9ygda2gn9zika1jc9zl19xl99ylo9ylya2m9a1cmaedqacdwaae8aeemabfdadfpaefya9gdadgmaaj2adjlaelcaclnaclwaem8a9c9akcraqczaqdfardoamedaofkaog0algeanglanieaqilakj1aojaakjmamlfamlmanlxanmcammpalbyaxcpb0cyb1deb0fmb0fzb2gcb1gob1gyawinawixayj9awjlaylqazlxb2meaxmnb0mwaycebdcpb9fnb9fxbfgdbbgobeh2bchxbcicbbinb9j1bcjabelqbblwbbmbbemlban3b8c2boc8bkfqbog2bkgcblgmblgzbkicbqinbkj1bljfbnlobklxbrmabpmmbkmzbqaxbybbc1bnbybyc0clbxg1c0gbbwgkbxgxbxi9c1iobxj1c1jbc0lxbxmcc0mqc3n2c3alcdb2cbbec9bmcbc1cbfxcbg9cagqcbgycchoc8idcciqccixc9jccelxcem9camqcfmycfn8cfaecpayclbacpboclfxcrgdcogqclh0cphycoibcnincoj2cmjacllxcnmcclmlcmmwcln8cpaqcxaycybed1bld1fyczg9cygpd2gzd2hycxifd0iocyiwd0locylzd1mcd2mkd2mwd0akd9b3dab9dbfzdbgedegmdcgwddhxdbifd9imddiydelpdclxdam8dempdbn3dfa8dlamdoaxdnbadofydogadrgrdlhodqhwdki8dmikdniydplodkm1dqmadkmpdrn0dnaadyapdyb1e1bbdwg3dxgadygodyhpdwhwe1i8e2ipdxloe3lydzmbdxmme1acefareab1edbce8foedfxefgde8glechaebhnefhyeeideciqeelfefloe8m2e8m8ecmledaeeqarerazerfkekfyeqgdemhmeni1eni8emineml8ellqeom1enmaeoabewakewb2ewbaezfef0fmezfzexh9f0hof0hyewidexkdf1kzezldexlqeym2exa8faaofbb1fdbbfcezfefffaflfafzf9gzfdh9fbhlf8i2faiafekofal1falcfblkfdaeflaqfkb0fqbdfqbmfqc2fmdyfqeqfoeyfjf8fqh9flhmfli0fmi9fqiwfoj8fok9fqkrfpl2fqlafob1fzbefzbkfxeeg2eofweyg0fbfxhdg3hmfzhyfyjqg2jyfykdfxklfxbbgbbog8bzgac9gbcpgbczgddbgfe0gdeagaemgagwgeh9gdhlgdhwg8iegbingfj1g9jcgajngajxgakag9bxglcbgrcrgkd0gld9gldngre3gmh2glhdgohqgmhzgpi9gmizgkjdgmjlgmjwgpmmglmwgocpgwfxh3gah2gph0h0gwhdh2hngxhwgyk2h1k9h2nph2fph9fxh9gbhagohdgxh9hchahnhahxh9jyhekahdkkhclahaloham2h9mehbmphamxhenchdgdhqgnhoh0hnhchqhqhrk0hpkahkkohokzhmlahmlphmm9hmmohqn2hln9hknlhngrhxgzhvhbhzhkhxjzi0kei1kqi1kxi1nehxnmhxo2i0gbiegoicgyi8hci9jnibjyickbiekoi9l2i8neidnni9nwi8ocibg9iqgmiph0iqhcimjciljpilk2imk8ikklikkyiqndinnlimnyimodikgej1gpixh2j1h8iwixiyjaj1kaj0knixl2j1npj0nwizoej0g2jdgajagojagwjfipjciyjcjej9kcjakpj8kwj8nkj9nxjao9jeomjafzjqgdjngpjoh0jkicjlimjoj1jmkkjpkyjql9jknljmnwjooajmg0jygak2gojzgxk1hqjyi9jyilk2kck1knjzl1jzlcjynrk1o2jyock0g3kdgekagqkehwkbiakdikkdkokal2kdlfkdnckcnlkenzkdodkeg1klgakmh8klhokni2kqickrknkol1kplaklnlknnwkqockqfql2fykwg8l2hnl1hwkzi8kxkqkzkwkwldl2nokxnwkvoal1feldfpl8g0lcg8lagwl9hqlahyl9ialckqlakwlcl9lanelcnoldo0lefdlnfllqfxlqh9lmhklmhyloi9lkkwlkl8lmlqlpnalonolonylkb2m2emlwf0lwfblxflm2gnm0h2lxhclxhllxi1m2lclxljm2m1m2nalynolxarm8e2maenmff2meffm8gwmahdmdhnmbhxmdlqmalzmbmemamlman2mdn9meaxmmbemqbkmldrmledmpenmoeymof8mph0mphamlhomlmpmkaymyb9n2bnmzbxn0e1n2ebmyeomxgamzgkmzgwn0hamyhlmxb1nbb9nebpnec3ndceneclnad0ncd9nadqnedznegonah2nahen8hknbbpnlbynpc8nrclnld1nqd9nqdnnkg9nlgonogznnh9nmgdo2gro2gyo2h9nwg8o8gmoch0o9hdodfyoogdongrokh1omh9omfyoygdp1gmoxgyp1fwpbgbpeglpagypcfzpmgdpmglpngzpkfkq0g0q3gapwgoq0gypxnmq2fmqdg3qeg8qegoqagwqcnnqefqqng1qqgdqogpqknnqmfqqxg0qyg8qwgoqzneqxnmqzforefwr8gar8gkrdnbrefkrkg2rogbrogorkn0rmndrqfls1fwrvgbs1grrxn1rwfnseg2s9gesagms8m0s9n2sbfjslfzsmgcskgmsqmmsqfmsyfwsygbszgpsymct1fxtdg8tagpt8gztematag3tqg8tlgptmgwtjhetqlqtmm2tpgdtzgrtwgwtwlku1gaucgkueh2uehdubkxublbubgoukh2ulhcukkdupkpukkwuoh2uvheuwhkv0i0uziauyinv2j0v2jluzk0uvkav0hmv8i0vci8vaikvaj1vej8vajnvez9hyzjigz7j1z8jizbk1zfkgz5l0z6lgz6lzywmiykmwyjndydnty4obxwonxop6xoprxeq3x1qjwxr0wsriwfrtw5s7vpsivkt4v0tauytwucu2tzudtruvtfv3t4vksnvss4vxruwarewoqywrqkx7q6xcpmxop9y2osxxo7y3nwydncyjmzyrmfyvm1z2lgyykxz6kfz3k0zcjhzjj0zgigz8i1zihkzkh0zdgizjg1zbfiz6ezzcegz9e1yydkz1d4yuckyoc9yabpy5b6y8atxradxk9uxi9gx98xwz8owh87wb7pw67bvu6tvn6iv76buq5uul5ku458tq4ytb4kt042st3ts83hru3drc2xr12xqj2kq52cpo23pa1qos1mod1qnq1bne1hmx0xmf0tm10tlh0yky0pkf0vjy0ijj0iix0fig0mhz0phi0ngy0qgg0tg30ofh0vey13ei0we318dl19d21gcl1jc51tbo1tb624ar2eae2f9r2v9g2y8w3i8m3l873u7s4c7h4g6z4x6l53665h5r5w5i62526o4x734l7b437t3w803g8i3c91379a2n9p2fa829at2bba22bo1wc71mcm1gd41fdg10dz0teg0rf10nfj0xg10jgg0igx0jhf0qhz0dij0gix0ejg0jjz0qkh0mky0mli10lz0ume1bmv1end1knu1nof1kos20p922po2bq22pqj2xr42wrj36ru3msb3rso47sz4kte4rtp56u55eud5xur67v76mvh6yvw77w37swj82wj8owq91xc9axb9xxpaaxzaqxzb9y3boycc4ygcnyvd2yudkz3dzyyeizbezz5fjzhfxzkgkzfh1zbhj");
+
+  var logo = document.querySelector('[data-logo]');
+  function noLogo(){ logo.closest('.brand').classList.add('no-logo'); }
+  if (logo){ logo.addEventListener('error', noLogo); if (logo.complete && !logo.naturalWidth) noLogo(); }
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- Dust field ---------- */
+  var field = (function(){
+    var canvas = document.getElementById('field'), ctx = canvas.getContext('2d');
+    var slotEl = document.getElementById('logoSlot'), homeEl = document.getElementById('home');
+    var W = 0, H = 0, parts = [], bits = [], ripples = [], raf = 0, running = false, still = false;
+    var t0 = performance.now(), mouse = {x:-9999, y:-9999, on:false}, gather = null;
+    var LC = ['168,100,74','168,100,74','123,70,54','123,70,54','123,70,54','150,85,62','150,85,62','222,140,110','128,165,210','160,138,208'];
+    var AC = ['168,100,74','222,150,120','150,182,220','176,158,220','236,176,140','123,70,54'];
+    function rnd(a, b){ return a + Math.random() * (b - a); }
+    function pick(a){ return a[(Math.random() * a.length) | 0]; }
+
+    function resize(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function build(){
+      resize();
+      LOGO.forEach(function(pt){
+        parts.push({x:rnd(0, W), y:rnd(0, H), vx:0, vy:0, r:rnd(.9, 2.1), c:pick(LC), base:rnd(.7, 1),
+          tw:rnd(.0006, .0022), ph:rnd(0, 6.28), home:pt, delay:rnd(150, 1400), fall:rnd(.03, .12), gs:Math.random()});
+      });
+      var n = Math.min(150, Math.max(50, Math.floor(W * H / 11000)));
+      for (var i = 0; i < n; i++){
+        parts.push({x:rnd(0, W), y:rnd(0, H), vx:0, vy:0, r:rnd(.6, 2.2), c:pick(AC), base:rnd(.3, .75),
+          tw:rnd(.0006, .0025), ph:rnd(0, 6.28), home:null, delay:0, fall:rnd(.04, .16), gs:Math.random()});
+      }
+    }
+    function slot(){
+      if (!slotEl || homeEl.hidden) return null;
+      var r = slotEl.getBoundingClientRect();
+      if (r.width < 10 || r.bottom < -80 || r.top > H + 80) return null;
+      return r;
+    }
+    function perimeter(r, s, off){
+      var w = r.width + off * 2, h = r.height + off * 2, P = 2 * (w + h), d = s * P;
+      var x0 = r.left - off, y0 = r.top - off;
+      if (d < w) return [x0 + d, y0];
+      d -= w; if (d < h) return [x0 + w, y0 + d];
+      d -= h; if (d < w) return [x0 + w - d, y0 + h];
+      d -= w; return [x0, y0 + h - d];
+    }
+
+    function frame(now){
+      var t = now - t0;
+      ctx.clearRect(0, 0, W, H);
+      var s = slot(), sc = s ? Math.max(.55, Math.min(1, s.width / 440)) : 1;
+      if (gather && now > gather.until) gather = null;
+
+      for (var k = ripples.length - 1; k >= 0; k--){
+        var rp = ripples[k]; rp.rad += 5; rp.s *= .97;
+        if (rp.s < .05){ ripples.splice(k, 1); continue; }
+        ctx.beginPath(); ctx.arc(rp.x, rp.y, rp.rad, 0, 6.283);
+        ctx.strokeStyle = 'rgba(168,100,74,' + (rp.s * .14) + ')'; ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      var near = [];
+      for (var i = 0; i < parts.length; i++){
+        var p = parts[i], tx = null, ty = 0;
+        if (p.home && s && (still || t > p.delay)){ tx = s.left + p.home[0] * s.width; ty = s.top + p.home[1] * s.height; }
+        else if (!p.home && gather){ p.gs = (p.gs + .0012) % 1; var q = perimeter(gather.r, p.gs, 10 + p.ph * 3); tx = q[0]; ty = q[1]; }
+
+        if (still){
+          if (tx !== null){ p.x = tx; p.y = ty; }
+        } else {
+          var dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (mouse.on && d < 110){ var f = (1 - d / 110) * .6; p.vx += dx / d * f; p.vy += dy / d * f; }
+          if (!p.home && mouse.on && d < 150) near.push(p);
+          for (var j = 0; j < ripples.length; j++){
+            var rq = ripples[j], ex = p.x - rq.x, ey = p.y - rq.y, ed = Math.sqrt(ex * ex + ey * ey) || 1;
+            if (Math.abs(ed - rq.rad) < 14){ p.vx += ex / ed * rq.s * 1.6; p.vy += ey / ed * rq.s * 1.6; }
+          }
+          var max;
+          if (tx !== null){
+            p.vx = (p.vx + (tx - p.x) * .003) * .9;
+            p.vy = (p.vy + (ty - p.y) * .003) * .9;
+            max = 6;
+          } else {
+            var sway = Math.sin(t * .0005 + p.ph) * .18;
+            p.vx += (sway - p.vx) * .03; p.vy += (p.fall - p.vy) * .03;
+            max = 3.5;
+          }
+          var sp = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+          if (sp > max){ p.vx *= max / sp; p.vy *= max / sp; }
+          p.x += p.vx; p.y += p.vy;
+          if (tx === null){
+            if (p.y > H + 6){ p.y = -6; p.x = Math.random() * W; }
+            else if (p.y < -60) p.y = H + 6;
+            if (p.x > W + 6) p.x = -6; else if (p.x < -6) p.x = W + 6;
+          }
+        }
+        var a = still ? p.base : p.base * (.55 + .45 * Math.sin(t * p.tw + p.ph));
+        var rad = (p.home && s) ? p.r * sc : p.r;
+        ctx.beginPath(); ctx.arc(p.x, p.y, rad, 0, 6.283);
+        ctx.fillStyle = 'rgba(' + p.c + ',' + a.toFixed(3) + ')'; ctx.fill();
+      }
+
+      ctx.lineWidth = .7;
+      for (var m = 0; m < near.length; m++){
+        for (var n2 = m + 1; n2 < near.length; n2++){
+          var lx = near[m].x - near[n2].x, ly = near[m].y - near[n2].y, ld = Math.sqrt(lx * lx + ly * ly);
+          if (ld < 80){
+            ctx.beginPath(); ctx.moveTo(near[m].x, near[m].y); ctx.lineTo(near[n2].x, near[n2].y);
+            ctx.strokeStyle = 'rgba(123,70,54,' + ((1 - ld / 80) * .3).toFixed(3) + ')'; ctx.stroke();
+          }
+        }
+      }
+
+      for (var b = bits.length - 1; b >= 0; b--){
+        var bt = bits[b]; bt.life++;
+        if (bt.life > bt.max){ bits.splice(b, 1); continue; }
+        bt.vx *= .985; bt.vy = bt.vy * .985 - .006;
+        bt.x += bt.vx; bt.y += bt.vy;
+        ctx.beginPath(); ctx.arc(bt.x, bt.y, bt.r, 0, 6.283);
+        ctx.fillStyle = 'rgba(' + bt.c + ',' + ((1 - bt.life / bt.max) * .85).toFixed(3) + ')'; ctx.fill();
+      }
+
+      if (running) raf = requestAnimationFrame(frame);
+    }
+
+    function start(){ if (running) return; running = true; raf = requestAnimationFrame(frame); }
+    function stop(){ running = false; cancelAnimationFrame(raf); }
+    function drawStill(){ if (still && !easy()) frame(performance.now()); }
+
+    function refresh(){
+      if (easy()){ stop(); ctx.clearRect(0, 0, W, H); return; }
+      if (reduceMQ.matches){ stop(); still = true; drawStill(); return; }
+      still = false;
+      if (!document.hidden) start();
+    }
+
+    function disintegrate(r){
+      var n = Math.max(80, Math.min(240, Math.floor(r.width * r.height / 450)));
+      [0, 110, 220, 330].forEach(function(delay){
+        setTimeout(function(){
+          for (var i = 0; i < n / 4; i++){
+            var x = rnd(r.left, r.right), y = rnd(r.top, r.bottom);
+            bits.push({x:x, y:y, vx:rnd(-.5, .5) + (x - (r.left + r.width / 2)) / r.width * 1.2,
+              vy:rnd(-.6, .3), r:rnd(.6, 2), c:pick(LC.concat(AC)), life:0, max:rnd(70, 140) | 0});
+          }
+        }, delay);
+      });
+    }
+    function gatherAround(r, ms){ gather = {r:r, until:performance.now() + ms}; }
+
+    window.addEventListener('pointermove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; mouse.on = true; }, {passive:true});
+    window.addEventListener('pointerdown', function(e){
+      mouse.x = e.clientX; mouse.y = e.clientY;
+      if (running) ripples.push({x:e.clientX, y:e.clientY, rad:0, s:1});
+    }, {passive:true});
+    document.addEventListener('pointerleave', function(){ mouse.on = false; });
+    window.addEventListener('blur', function(){ mouse.on = false; });
+    window.addEventListener('pointerup', function(e){ if (e.pointerType === 'touch') mouse.on = false; });
+    window.addEventListener('scroll', function(){ if (still) requestAnimationFrame(drawStill); }, {passive:true});
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ resize(); drawStill(); }, 150); });
+    document.addEventListener('visibilitychange', function(){ if (document.hidden) stop(); else refresh(); });
+    if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', refresh);
+
+    build();
+    return {refresh:refresh, disintegrate:disintegrate, gatherAround:gatherAround};
+  })();
+
+  /* ---------- Easy read toggle ---------- */
+  var toggle = document.getElementById('easyToggle');
+  toggle.setAttribute('aria-checked', easy() ? 'true' : 'false');
+  toggle.addEventListener('click', function(){
+    var on = !easy();
+    body.classList.toggle('easy', on);
+    toggle.setAttribute('aria-checked', on ? 'true' : 'false');
+    try{ localStorage.setItem('src-easy', on ? '1' : '0'); }catch(e){}
+    field.refresh();
+  });
+
+  /* ---------- Copy email ---------- */
+  var copyBtn = document.getElementById('copyEmail'), status = document.getElementById('copyStatus');
+  copyBtn.addEventListener('click', function(){
+    var email = 'sarahraeconsulting@gmail.com';
+    function done(){ status.textContent = 'Copied to clipboard'; setTimeout(function(){ status.textContent = ''; }, 2500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, function(){ status.textContent = email; });
+    else status.textContent = email;
+  });
+
+  /* ---------- Spotlight ---------- */
+  document.querySelectorAll('.spot').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* ---------- Reveal ---------- */
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {rootMargin:'0px 0px -8% 0px'}) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){ if (io && !reduceMQ.matches) io.observe(el); else el.classList.add('in'); });
+
+  if (window.matchMedia('(pointer: coarse)').matches){
+    document.getElementById('hint').innerHTML = '// touch and drag through the dust. <kbd>tap</kbd> to send a ripple.';
+  }
+
+  /* ---------- Router: #/dei, #/ethical-ai, #/talent ---------- */
+  var home = document.getElementById('home');
+  var views = {dei:document.getElementById('view-dei'), 'ethical-ai':document.getElementById('view-ethical-ai'), talent:document.getElementById('view-talent')};
+  var cats = Array.prototype.slice.call(document.querySelectorAll('.cat'));
+  var current = null, busy = false;
+
+  function route(){
+    var m = location.hash.match(/^#\/([\w-]+)$/), slug = (m && views[m[1]]) ? m[1] : null;
+    var wasDetail = !!current;
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== slug); });
+    home.hidden = !!slug;
+    cats.forEach(function(c){ c.classList.remove('dissolve', 'chosen'); });
+    current = slug;
+    if (slug){
+      var v = views[slug];
+      document.title = v.getAttribute('data-title') + ' | Sarah Rae Consulting';
+      window.scrollTo(0, 0);
+      v.querySelectorAll('.reveal').forEach(function(el, i){ setTimeout(function(){ el.classList.add('in'); }, calm() ? 0 : 90 * i); });
+      v.querySelector('h1').focus({preventScroll:true});
+    } else {
+      document.title = 'Sarah Rae Consulting';
+      var id = location.hash.slice(1), el = id && document.getElementById(id);
+      if (el) el.scrollIntoView({behavior:'auto'});
+      else if (wasDetail) window.scrollTo(0, 0);
+    }
+    field.refresh();
+  }
+  window.addEventListener('hashchange', route);
+
+  cats.forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (calm() || busy) return;           /* plain navigation in easy read or reduced motion */
+      e.preventDefault();
+      busy = true;
+      var slug = card.getAttribute('data-slug');
+      cats.forEach(function(o){
+        if (o === card) return;
+        field.disintegrate(o.getBoundingClientRect());
+        o.classList.add('dissolve');
+      });
+      card.classList.add('chosen');
+      field.gatherAround(card.getBoundingClientRect(), 1200);
+
+      setTimeout(function(){
+        var r = card.getBoundingClientRect();
+        var ex = document.createElement('div');
+        ex.className = 'expander';
+        ex.setAttribute('aria-hidden', 'true');
+        ex.innerHTML = '<span class="ex-title"></span>';
+        ex.firstChild.textContent = card.querySelector('h3').textContent;
+        ex.style.top = r.top + 'px'; ex.style.left = r.left + 'px';
+        ex.style.width = r.width + 'px'; ex.style.height = r.height + 'px';
+        document.body.appendChild(ex);
+        ex.getBoundingClientRect();
+        requestAnimationFrame(function(){
+          ex.classList.add('open');
+          ex.style.top = '0px'; ex.style.left = '0px';
+          ex.style.width = '100vw'; ex.style.height = '100vh'; ex.style.borderRadius = '0px';
+        });
+        setTimeout(function(){
+          location.hash = '#/' + slug;
+          setTimeout(function(){
+            ex.classList.add('fade');
+            setTimeout(function(){ ex.remove(); busy = false; }, 480);
+          }, 60);
+        }, 640);
+      }, 520);
+    });
+  });
+
+  route();
+  field.refresh();
+})();
+</script>
+</body>
+</html>
