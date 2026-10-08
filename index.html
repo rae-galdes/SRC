@@ -276,6 +276,62 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   .toggle .label-long{display:none}
   .brand-text span{letter-spacing:.24em}
 }
+/* ---------- Systems map (About) ---------- */
+.sm{--h-id:#6e4aa3;--h-pr:#9c3c5e;--h-fn:#7a3f2a;--h-or:#7d5a0e;--h-te:#335f94}
+.sm-intro{max-width:640px;margin:0 0 22px;color:var(--ink-soft)}
+.sm-frame{position:relative;border:1px solid rgba(123,70,54,.28);border-radius:var(--radius);background:rgba(255,250,245,.9);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 18px 40px -28px rgba(123,70,54,.45);overflow:hidden}
+.sm-top{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px dashed var(--line)}
+.sm-slide{display:flex;align-items:center;gap:14px;flex:1 1 420px;max-width:560px}
+.sm-slide span{font:700 .78rem var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;cursor:pointer}
+.sm-slide span.on{color:var(--copper-deep)}
+.sm-range{flex:1;-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer;margin:0}
+.sm-range::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--copper) 0 var(--fill,0%),rgba(123,70,54,.18) var(--fill,0%) 100%)}
+.sm-range::-moz-range-track{height:4px;border-radius:4px;background:rgba(123,70,54,.18)}
+.sm-range::-moz-range-progress{height:4px;border-radius:4px;background:var(--copper)}
+.sm-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;background:var(--copper-deep);border:4px solid #fff6ee;box-shadow:0 0 0 1px rgba(123,70,54,.35),0 3px 10px rgba(123,70,54,.3)}
+.sm-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--copper-deep);border:4px solid #fff6ee;box-shadow:0 0 0 1px rgba(123,70,54,.35),0 3px 10px rgba(123,70,54,.3)}
+.sm-range:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:8px}
+.sm-key{display:flex;flex-wrap:wrap;gap:4px 4px;list-style:none;margin:0;padding:0;font-size:.84rem;color:var(--ink-soft)}
+.sm-key li{display:flex}
+.sm-kb{display:flex;align-items:center;gap:6px;font:inherit;color:inherit;background:none;border:1px solid transparent;border-radius:999px;padding:4px 10px;cursor:pointer;transition:background .2s,border-color .2s}
+.sm-kb:hover{border-color:var(--line);background:rgba(255,255,255,.6)}
+.sm-kb[aria-pressed="true"]{background:#fff;border-color:var(--kc);color:var(--kc);font-weight:700}
+.sm-kb:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sm-key svg{width:13px;height:13px;flex:none}
+.sm-stage{position:relative;height:clamp(460px,62vh,600px)}
+.sm-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sm-pt{position:absolute;left:0;top:0;transform:translate(-9999px,0);font:700 .8rem/1.2 var(--sans);border:0;background:rgba(255,250,245,.9);
+  border-radius:7px;padding:3px 7px;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+.sm-pt:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sm-stage.dim .sm-pt{opacity:.3}.sm-stage.dim .sm-pt.on{opacity:1}
+.sm-hub{position:absolute;left:0;top:0;width:96px;height:96px;transform:translate(-9999px,0);border:0;border-radius:50%;background:none;cursor:pointer;padding:0;transition:opacity .4s}
+.sm-hub img{width:56px;height:56px;display:block;margin:12px auto 0}
+.sm-hub:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sm-desc{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start;min-height:112px;padding:16px 24px 18px;border-top:1px dashed var(--line);background:rgba(253,244,236,.6)}
+.sm-desc .mk{grid-row:1 / span 3;width:34px;height:34px;margin-top:4px}
+.sm-desc small{font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.sm-desc b{font:400 1.2rem/1.3 var(--serif);color:var(--ink)}
+.sm-desc p{margin:2px 0 0;color:var(--ink-soft);max-width:72ch}
+.sm-desc .cw{margin-top:6px;font-size:.86rem;color:var(--ink-soft)}
+.sm-desc .cw em{font-style:normal;font-weight:700}
+.sm-words{display:none}
+body.easy .sm-frame{display:none}
+body.easy .sm-words{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.sm-words h3{margin:0 0 6px;font-size:1.05rem}.sm-words ul{margin:0;padding-left:1.1em}.sm-words li{margin-bottom:8px}
+@media (max-width:640px){
+  .sm-top{padding:14px 14px}
+  .sm-slide{flex-basis:100%}
+  .sm-slide span{font-size:.7rem}
+  .sm-key{font-size:.76rem;gap:4px 12px}
+  .sm-stage{height:500px}
+  .sm-stage .sm-pt,.sm-stage.dim .sm-pt{opacity:0;pointer-events:none}
+  .sm-stage.dim .sm-pt.on{opacity:1}
+  .sm-stage.hubon .sm-pt.on{opacity:0}
+  .sm-desc{padding:14px;min-height:150px;grid-template-columns:auto 1fr;gap:2px 12px}
+  .sm-desc .mk{width:26px;height:26px}
+  .sm-hub{width:76px;height:76px}.sm-hub img{width:44px;height:44px;margin-top:10px}
+}
 </style>
 </head>
 <body>
@@ -376,25 +432,27 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   <section id="about" aria-labelledby="about-h">
     <div class="container">
       <div class="sec-head reveal">
-        <h2 id="about-h">The human side of technical solutions</h2>
+        <h2 id="about-h">Systems map</h2>
       </div>
-      <div class="about">
-        <div class="reveal">
-          <p class="big">Every organisation is a system. I start by understanding yours.</p>
-          <p>I'm Rae, Principal Consultant at Sarah Rae Consulting, which I founded in 2020. Over more than 12 years I've worked across community services, registered training organisations and not-for-profits, and that grounding shapes every engagement.</p>
-          <p>My background in social welfare and organisational learning shaped how I see problems: never in isolation, always as part of a wider system. I look at how people, processes, technology and culture connect, where they pull against each other, and where a change will make the real difference.</p>
-          <p>From there, the right solution might be a learning program, a people strategy, a platform, a policy shift or leadership development. I don't start with the answer. I start with the system, so the answer fits.</p>
+      <p class="sm-intro reveal">Twenty parts of how I work, in five small systems. Each one stands on its own. Slide across to see what they become together.</p>
+      <div class="sm" id="sm">
+        <div class="sm-frame" id="smFrame">
+          <div class="sm-top">
+            <div class="sm-slide">
+              <span id="smLo" class="on">The parts</span>
+              <input type="range" class="sm-range" id="smRange" min="0" max="1000" step="1" value="0" aria-label="Move from the parts to the whole" aria-valuetext="The parts">
+              <span id="smHi">The whole</span>
+            </div>
+            <ul class="sm-key" id="smKey" aria-label="Groups. Choose one to highlight it."></ul>
+          </div>
+          <div class="sm-stage" id="smStage">
+            <canvas id="smCv" aria-hidden="true"></canvas>
+            <div id="smLabels"></div>
+            <button type="button" class="sm-hub" id="smHub" aria-label="Systems thinking. Connects all twenty parts."><img src="assets/logo-monogram.png" alt=""></button>
+          </div>
+          <div class="sm-desc" id="smDesc" aria-live="polite"></div>
         </div>
-        <aside class="spec glass reveal" aria-label="Quick facts">
-          <dl>
-            <div><dt>Name</dt><dd>Rae Galdes</dd></div>
-            <div><dt>Pronouns</dt><dd>they/them</dd></div>
-            <div><dt>Role</dt><dd>Principal Consultant</dd></div>
-            <div><dt>Qualifications</dt><dd>GradCert Organisational Learning<br>BSocSc (Social Welfare)</dd></div>
-            <div><dt>Experience</dt><dd>12+ years</dd></div>
-            <div><dt>Practice</dt><dd>Founded 2020</dd></div>
-          </dl>
-        </aside>
+        <div class="sm-words" id="smWords"></div>
       </div>
     </div>
   </section>
@@ -1328,6 +1386,406 @@ body.easy .idx,body.easy .tag,body.easy .eyebrow,body.easy .spec dt{letter-spaci
   });
   route();
   field.refresh();
+})();
+</script>
+<script>
+/* ---------- Systems map: twenty parts in five small systems, and the whole they make ---------- */
+(function(){
+  var root = document.getElementById('sm');
+  if (!root) return;
+
+  /* Groups run clockwise from the top. Each has its own colour and its own shape, so colour is never the only cue. */
+  var GROUPS = [
+    {name:'Foundations', dot:'#8a4a33', txt:'--h-fn', shape:'circle', pts:[
+      ['BSocSc (Social Welfare)', 'My degree in social welfare: how social systems, services and policy shape people’s lives.'],
+      ['Human behaviour', 'Why people act as they do, alone and in groups, and what helps change stick.'],
+      ['Systems theory', 'Seeing an organisation as connected parts, so a change in one place is understood across the whole.'],
+      ['GradCert Organisational Learning', 'My postgraduate study in how organisations learn, adapt and build capability.']]},
+    {name:'Organisations', dot:'#d9a12b', txt:'--h-or', shape:'square', pts:[
+      ['Shared understanding', 'Helping people across an organisation see the same picture before deciding what to change.'],
+      ['Culture', 'The norms and habits that shape how work really gets done, and who feels they belong.'],
+      ['Complex organisations', 'Years of working inside large, many-layered organisations where lots of systems meet.'],
+      ['Capability', 'Building the skills and confidence people need for the work that is coming.']]},
+    {name:'Technology', dot:'#3a6aa5', txt:'--h-te', shape:'hex', pts:[
+      ['Technical systems', 'Understanding how platforms, data and tools fit together, and where they help or get in the way.'],
+      ['Building digital tools', 'Designing and developing practical digital tools that support learning and work.'],
+      ['Ethical AI', 'Making sure AI is used fairly and transparently, with people in mind.'],
+      ['AI literacy', 'Helping people understand AI well enough to use it wisely and to question it.']]},
+    {name:'Professional practice', dot:'#cf5d7c', txt:'--h-pr', shape:'triangle', pts:[
+      ['Adult educator', 'Designing and delivering learning for adults, grounded in how people actually learn.'],
+      ['Counsellor', 'Therapeutic training that shapes how I listen, hold complexity and work through change with people.'],
+      ['Facilitator', 'Bringing groups together to think, decide and move forward.'],
+      ['DEI advocate', 'Working for workplaces where everyone can take part fully, including gender equity.']]},
+    {name:'Identity', dot:'#bba0ec', txt:'--h-id', shape:'diamond', pts:[
+      ['Lived experience', 'Knowing from the inside what it takes to move through systems that weren’t built with you in mind.'],
+      ['Neurodivergent', 'Thinking differently, and designing for people who do too.'],
+      ['Non-binary', 'Part of who I am, and part of why inclusion is personal for me.'],
+      ['Queer', 'Part of who I am, and of the communities I bring into the room.']]}
+  ];
+  /* Links only where two parts genuinely inform each other */
+  var INNER = [
+    ['BSocSc (Social Welfare)','Systems theory'],['BSocSc (Social Welfare)','Human behaviour'],['Systems theory','Human behaviour'],['GradCert Organisational Learning','Systems theory'],
+    ['Complex organisations','Culture'],['Complex organisations','Capability'],['Culture','Shared understanding'],['Capability','Shared understanding'],
+    ['Technical systems','Building digital tools'],['Technical systems','Ethical AI'],['Ethical AI','AI literacy'],
+    ['DEI advocate','Adult educator'],['Adult educator','Facilitator'],['Counsellor','Facilitator'],
+    ['Non-binary','Queer'],['Lived experience','Non-binary'],['Lived experience','Queer'],['Lived experience','Neurodivergent']
+  ];
+  var CROSS = [
+    ['Lived experience','DEI advocate'],['Queer','DEI advocate'],['Non-binary','DEI advocate'],['Neurodivergent','DEI advocate'],
+    ['Neurodivergent','Adult educator'],['Counsellor','BSocSc (Social Welfare)'],['Counsellor','Human behaviour'],
+    ['Adult educator','GradCert Organisational Learning'],['Facilitator','Shared understanding'],['DEI advocate','Culture'],
+    ['Systems theory','Complex organisations'],['Human behaviour','Culture'],['GradCert Organisational Learning','Capability'],
+    ['Capability','Building digital tools'],['Complex organisations','Technical systems'],['Ethical AI','DEI advocate'],
+    ['AI literacy','Adult educator'],['Ethical AI','Complex organisations']
+  ];
+  var DUST = ['168,100,74','222,150,120','158,184,214','178,180,214','236,176,140','123,70,54'];
+
+  var body = document.body, rmq = matchMedia('(prefers-reduced-motion: reduce)');
+  function calm(){ return body.classList.contains('easy') || rmq.matches; }
+  function rnd(a, b){ return a + Math.random() * (b - a); }
+  function rgb(h){ return [parseInt(h.substr(1,2),16), parseInt(h.substr(3,2),16), parseInt(h.substr(5,2),16)]; }
+  function ease(t){ return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
+  function esc(s){ return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  var stage = document.getElementById('smStage'), frameEl = document.getElementById('smFrame'), cv = document.getElementById('smCv'), ctx = cv.getContext('2d');
+  var labels = document.getElementById('smLabels'), hub = document.getElementById('smHub'), desc = document.getElementById('smDesc');
+  var range = document.getElementById('smRange'), lo = document.getElementById('smLo'), hi = document.getElementById('smHi');
+  var cs = getComputedStyle(root);
+  var W = 0, H = 0, dpr = 1, phone = false, nodes = [], byName = {}, links = [], dust = [];
+  var e = 0, eT = 0, focus = null, pointer = {x:-1e4, y:-1e4, in:false}, visible = false, running = false, raf = 0;
+  var touched = false, played = false, autoRaf = 0;
+
+  /* shapes: one path drawer shared by the canvas, the key and the description */
+  function shapePath(c, sh, x, y, r){
+    c.beginPath();
+    if (sh === 'circle') c.arc(x, y, r, 0, 6.283);
+    else if (sh === 'square'){ var s = r * .88; c.rect(x - s, y - s, s * 2, s * 2); }
+    else if (sh === 'diamond'){ c.moveTo(x, y - r * 1.25); c.lineTo(x + r * 1.05, y); c.lineTo(x, y + r * 1.25); c.lineTo(x - r * 1.05, y); c.closePath(); }
+    else if (sh === 'triangle'){ c.moveTo(x, y - r * 1.2); c.lineTo(x + r * 1.15, y + r * .85); c.lineTo(x - r * 1.15, y + r * .85); c.closePath(); }
+    else { for (var i = 0; i < 6; i++){ var a = i * 1.0472 - 1.5708; c[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * r * 1.08, y + Math.sin(a) * r * 1.08); } c.closePath(); }
+  }
+  function svgShape(g, size){
+    var r = 5, x = 7, y = 7, d;
+    if (g.shape === 'circle') d = '<circle cx="7" cy="7" r="5"/>';
+    else if (g.shape === 'square') d = '<rect x="2.6" y="2.6" width="8.8" height="8.8" rx="1"/>';
+    else if (g.shape === 'diamond') d = '<path d="M7 .8 12.2 7 7 13.2 1.8 7z"/>';
+    else if (g.shape === 'triangle') d = '<path d="M7 1.2 12.8 11.4H1.2z"/>';
+    else { var p = []; for (var i = 0; i < 6; i++){ var a = i * 1.0472 - 1.5708; p.push((x + Math.cos(a) * r * 1.15).toFixed(2) + ' ' + (y + Math.sin(a) * r * 1.15).toFixed(2)); } d = '<path d="M' + p.join('L') + 'z"/>'; }
+    return '<svg viewBox="0 0 14 14" aria-hidden="true" fill="' + g.dot + '"' + (size ? ' class="mk"' : '') + '>' + d + '</svg>';
+  }
+
+  /* key */
+  var key = document.getElementById('smKey'), words = document.getElementById('smWords');
+  GROUPS.forEach(function(g, gi){
+    g.rgb = rgb(g.dot); g.text = cs.getPropertyValue(g.txt).trim(); g.gi = gi;
+    key.insertAdjacentHTML('beforeend', '<li><button type="button" class="sm-kb" aria-pressed="false" style="--kc:' + g.text + '">' + svgShape(g) + g.name + '</button></li>');
+  });
+
+  /* one marker per part, with its name as a focusable label */
+  var k = 0;
+  GROUPS.forEach(function(g){
+    g.pts.forEach(function(pt, pi){
+      var n = {name:pt[0], about:pt[1], g:g, pi:pi, k:k++, x:0, y:0, mates:[], ph:rnd(0, 6.3)};
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'sm-pt'; b.textContent = n.name; b.style.color = g.text;
+      b.addEventListener('mouseenter', function(){ setFocus(n); });
+      b.addEventListener('mouseleave', function(){ setFocus(null); });
+      b.addEventListener('focus', function(){ setFocus(n); });
+      b.addEventListener('blur', function(){ setFocus(null); });
+      b.addEventListener('click', function(){ setFocus(n); });
+      labels.appendChild(b); n.el = b;
+      nodes.push(n); byName[n.name] = n;
+    });
+  });
+  INNER.forEach(function(p){ links.push({a:byName[p[0]], b:byName[p[1]], kind:0, ph:rnd(0, 1)}); });
+  CROSS.forEach(function(p, i){ links.push({a:byName[p[0]], b:byName[p[1]], kind:1, ord:i / CROSS.length, ph:rnd(0, 1)}); });
+  nodes.forEach(function(n){ links.push({a:n, b:null, kind:2, ord:n.k / 20, ph:rnd(0, 1)}); });
+  links.forEach(function(l){ if (l.b){ l.a.mates.push(l.b); l.b.mates.push(l.a); } });
+  function mateList(n){ return n.mates.map(function(m){ return m.name; }).join(', '); }
+  nodes.forEach(function(n){ n.el.setAttribute('aria-label', n.name + ', ' + n.g.name + '. ' + n.about + ' Connects with ' + mateList(n) + '.'); });
+  GROUPS.forEach(function(g){
+    words.insertAdjacentHTML('beforeend', '<div><h3>' + g.name + '</h3><ul>' + g.pts.map(function(p){
+      return '<li><strong>' + esc(p[0]) + '</strong>. ' + esc(p[1]) + ' Connects with ' + esc(mateList(byName[p[0]])) + '.</li>';
+    }).join('') + '</ul></div>');
+  });
+
+  /* the key doubles as a filter: choose a group to light its parts and everything they reach */
+  var pinned = null, keyBtns = [].slice.call(key.querySelectorAll('.sm-kb'));
+  keyBtns.forEach(function(b, gi){
+    b.addEventListener('click', function(){
+      pinned = pinned === GROUPS[gi] ? null : GROUPS[gi];
+      keyBtns.forEach(function(o, oi){ o.setAttribute('aria-pressed', pinned === GROUPS[oi]); });
+      setFocus(null);
+    });
+  });
+
+  /* layout: the parts sit on a pentagon, the whole is one ring around systems thinking; each group keeps its direction */
+  var DIAMOND = [[-1, 0], [0, -1], [1, 0], [0, 1]], PHONE = [.11, .3, .5, .7, .89];
+  function layout(){
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = stage.clientWidth; H = stage.clientHeight; phone = W < 640;
+    cv.width = W * dpr; cv.height = H * dpr;
+    var cx = W / 2, cy = H / 2, m = Math.min(W, H);
+    var Rx = Math.min(W * .34, m * .62), Ry = m * .33, dr = phone ? Math.min(W * .1, H * .055) : m * .095;
+    var R = phone ? Math.min(W * .38, H * .36) : Math.min(H * .36, W * .28);
+    nodes.forEach(function(n){
+      var gi = n.g.gi, ga = -1.5708 + gi * 1.2566, gx, gy;
+      if (phone){ gx = W * .7; gy = PHONE[gi] * H; }
+      else { gx = cx + Math.cos(ga) * Rx; gy = cy + Math.sin(ga) * Ry; }
+      n.g.gx = gx; n.g.gy = gy;
+      var dm = DIAMOND[n.pi];
+      n.px = gx + dm[0] * dr * 1.3; n.py = gy + dm[1] * dr;
+      var slot = gi * 5 + n.pi, ang = -1.5708 + (slot - 1.5) / 25 * 6.283;
+      n.wx = cx + Math.cos(ang) * R; n.wy = cy + Math.sin(ang) * R; n.ang = ang;
+      if (!n.x){ n.x = n.px; n.y = n.py; }
+    });
+    nodes.forEach(function(n){ n.bw = n.el.offsetWidth; n.bh = n.el.offsetHeight; n.lx = null; });
+    hub.cx = cx; hub.cy = cy;
+    hub.style.transform = 'translate(' + (cx - hub.offsetWidth / 2) + 'px,' + (cy - hub.offsetHeight / 2) + 'px)';
+    dust = [];
+    for (var i = 0; i < (phone ? 70 : 150); i++){
+      var u = Math.random();
+      dust.push({x:rnd(0, W), y:rnd(0, H), vx:rnd(-.12, .12), vy:rnd(-.1, .1), r:rnd(.5, 1.8), a:rnd(.18, .5), fs:'rgb(' + DUST[(Math.random() * DUST.length) | 0] + ')', shp:u < .67 ? 0 : u < .85 ? 1 : 2});
+    }
+    draw(performance.now());
+  }
+
+  /* the slider is the control. Automatic moves (first view, and scrolling) glide it with the same easing. */
+  var tween = null;
+  function show(v){
+    range.value = Math.round(v * 1000);
+    range.style.setProperty('--fill', (v * 100).toFixed(2) + '%');
+    range.setAttribute('aria-valuetext', v < .5 ? 'The parts' : 'The whole');
+    lo.classList.toggle('on', v < .5); hi.classList.toggle('on', v >= .5);
+  }
+  function setE(v){ eT = v; show(v); if (calm()) e = eT; kick(); }
+  function glideTo(v, dur){
+    if (calm()){ setE(v); return; }
+    var from = eT; if (Math.abs(v - from) < .001) return;
+    tween = {from:from, to:v, t0:performance.now(), dur:dur || 1800 * Math.abs(v - from) + 400};
+    kick();
+  }
+  function userMoved(){ touched = true; tween = null; }
+  range.addEventListener('input', function(){ userMoved(); setE(range.value / 1000); });
+  range.addEventListener('pointerdown', userMoved);
+  range.addEventListener('keydown', userMoved);
+  lo.addEventListener('click', function(){ userMoved(); glideTo(0, 1100); });
+  hi.addEventListener('click', function(){ userMoved(); glideTo(1, 1100); });
+  function autoplay(){
+    if (played || touched || calm()) return;
+    played = true;
+    setTimeout(function(){ if (!touched && eT < .5) glideTo(1, 2600); }, 900);
+  }
+
+  /* scrolling: heading back up returns to the parts; scrolling down to the bottom of the frame brings them together again */
+  var lastY = scrollY, armed = false;
+  addEventListener('scroll', function(){
+    var y = scrollY, dy = y - lastY; lastY = y;
+    if (!dy || calm() || body.classList.contains('easy')) return;
+    var r = frameEl.getBoundingClientRect(), inView = r.bottom > 0 && r.top < innerHeight;
+    if (dy < 0 && inView && eT > .5 && r.bottom > innerHeight * .98){ glideTo(0, 1400); armed = true; }
+    else if (dy > 0 && armed && eT < .5 && r.bottom <= innerHeight - 8){ glideTo(1, 2200); armed = false; }
+    if (eT >= .5 && !inView) armed = true;
+  }, {passive:true});
+
+  /* inside the frame, the page's own cursor web and click dance stay out of the way */
+  ['pointermove', 'pointerdown'].forEach(function(t){ frameEl.addEventListener(t, function(ev){ ev.stopPropagation(); }); });
+  frameEl.addEventListener('pointerenter', function(){ try { document.dispatchEvent(new Event('pointerleave')); } catch (err){} });
+
+  function blank(){
+    return e > .5
+      ? '<span></span><div><small style="color:var(--copper)">The whole</small><br><b>One system</b><p>Twenty parts, joined through systems thinking. Hover the centre to light every connection, or any part to see what it is.</p></div>'
+      : '<span></span><div><small style="color:var(--copper)">The parts</small><br><b>Five small systems</b><p>Hover or tap any part to see what it is and what it connects with. Drag the slider to bring them together.</p></div>';
+  }
+  var lastWhole = null;
+  function sync(){
+    var whole = e > .5;
+    if (whole !== lastWhole){ lastWhole = whole; hub.style.opacity = whole ? 1 : 0; hub.style.pointerEvents = whole ? 'auto' : 'none'; if (!focus) desc.innerHTML = blank(); }
+  }
+  function groupMates(G){
+    var out = [];
+    G.pts.forEach(function(p){ byName[p[0]].mates.forEach(function(m){ if (m.g !== G && out.indexOf(m) < 0) out.push(m); }); });
+    return out;
+  }
+  function setFocus(n){
+    if (!n && pinned) n = {group:pinned};
+    if (n && focus && n.group && focus.group === n.group) return;
+    focus = n;
+    var G = n && n.group, gm = G ? groupMates(G) : null;
+    stage.classList.toggle('dim', !!n); stage.classList.toggle('hubon', n === 'hub');
+    nodes.forEach(function(m){ m.el.classList.toggle('on', !!n && (n === 'hub' || (G ? m.g === G || gm.indexOf(m) > -1 : m === n || n.mates.indexOf(m) > -1))); });
+    if (!n) desc.innerHTML = blank();
+    else if (G) desc.innerHTML = svgShape(G, true) + '<div><small style="color:' + G.text + '">Group</small><br><b>' + esc(G.name) + '</b><p>' + esc(G.pts.map(function(p){ return p[0]; }).join(', ')) + '.</p><div class="cw"><em>Reaches across to</em> ' + esc(gm.map(function(m){ return m.name; }).join(', ')) + '</div></div>';
+    else if (n === 'hub') desc.innerHTML = '<span></span><div><small style="color:var(--copper)">The centre</small><br><b>Systems thinking</b><p>The lens that joins every part. Each lit line is a place where two parts of my practice work together.</p></div>';
+    else desc.innerHTML = svgShape(n.g, true) + '<div><small style="color:' + n.g.text + '">' + n.g.name + '</small><br><b>' + esc(n.name) + '</b><p>' + esc(n.about) + '</p><div class="cw"><em>Connects with</em> ' + esc(mateList(n)) + '</div></div>';
+    kick();
+  }
+  hub.addEventListener('mouseenter', function(){ if (e > .5) setFocus('hub'); });
+  hub.addEventListener('mouseleave', function(){ setFocus(null); });
+  hub.addEventListener('focus', function(){ setFocus('hub'); });
+  hub.addEventListener('blur', function(){ setFocus(null); });
+  hub.addEventListener('click', function(){ setFocus(focus === 'hub' ? null : 'hub'); });
+
+  /* pointer: the parts never move under someone who is exploring */
+  function probe(ev){
+    var r = stage.getBoundingClientRect(); pointer.x = ev.clientX - r.left; pointer.y = ev.clientY - r.top; pointer.in = true;
+    if (ev.target.closest('.sm-pt,.sm-hub')) return;
+    var best = null, bd = ev.pointerType === 'touch' ? 900 : 500;
+    nodes.forEach(function(n){ var dx = n.x - pointer.x, dy = n.y - pointer.y, d = dx * dx + dy * dy; if (d < bd){ bd = d; best = n; } });
+    if (best){ if (focus !== best) setFocus(best); }
+    else if (e > .5 && Math.hypot(pointer.x - hub.cx, pointer.y - hub.cy) < 50){ if (focus !== 'hub') setFocus('hub'); }
+    else if (focus && !focus.group) setFocus(null);
+  }
+  stage.addEventListener('pointermove', function(ev){ if (ev.pointerType !== 'touch') probe(ev); else { var r = stage.getBoundingClientRect(); pointer.x = ev.clientX - r.left; pointer.y = ev.clientY - r.top; } });
+  stage.addEventListener('pointerdown', function(ev){ if (ev.pointerType === 'touch') probe(ev); });
+  stage.addEventListener('pointerleave', function(ev){ pointer.in = false; if (ev.pointerType !== 'touch') setFocus(null); });
+
+  function lit(l){ if (!focus) return false; if (focus === 'hub') return true; if (focus.group) return l.a.g === focus.group || (l.b && l.b.g === focus.group); return l.a === focus || l.b === focus; }
+  function fromFocus(l){ return focus === 'hub' || l.a === focus || (focus.group && l.a.g === focus.group); }
+  function dot(x, y, r, shp){
+    if (shp === 0) ctx.fillRect(x - r, y - r, r * 2, r * 2);
+    else if (shp === 1){ ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill(); }
+    else { ctx.beginPath(); ctx.moveTo(x, y - r * 1.4); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r * 1.4); ctx.lineTo(x - r, y); ctx.fill(); }
+  }
+
+  /* labels: placed around each small system or outward from the ring, then nudged apart so none overlap */
+  function placeLabels(ee){
+    var rects = [];
+    nodes.forEach(function(n){
+      var bw = n.bw, bh = n.bh, r = n.pi;
+      var px = r === 0 ? -bw - 14 : r === 2 ? 14 : -bw / 2, py = r === 1 ? -bh - 12 : r === 3 ? 12 : -bh / 2;
+      var c = Math.cos(n.ang), s = Math.sin(n.ang);
+      var wx = c > .04 ? 14 : c < -.04 ? -bw - 14 : -bw / 2, wy = s > .5 ? 10 : s < -.5 ? -bh - 10 : -bh / 2 + s * bh * .6;
+      rects.push({n:n, x:n.x + px + (wx - px) * ee, y:n.y + py + (wy - py) * ee, w:bw, h:bh});
+    });
+    for (var it = 0; it < 12; it++){
+      var moved = false;
+      for (var i = 0; i < rects.length; i++) for (var j = i + 1; j < rects.length; j++){
+        var a = rects[i], b = rects[j], ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) + 4, oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) + 3;
+        if (ox > 0 && oy > 0){
+          moved = true;
+          var dy = (a.y + a.h / 2) <= (b.y + b.h / 2) ? -1 : 1;
+          a.y += dy * oy / 2; b.y -= dy * oy / 2;
+        }
+      }
+      rects.forEach(function(r){ r.x = clamp(r.x, 4, W - r.w - 4); r.y = clamp(r.y, 4, H - r.h - 4); });
+      if (!moved) break;
+    }
+    rects.forEach(function(r){
+      var n = r.n;
+      if (n.lx == null || calm()){ n.lx = r.x; n.ly = r.y; } else { n.lx += (r.x - n.lx) * .25; n.ly += (r.y - n.ly) * .25; }
+      n.el.style.transform = 'translate(' + n.lx.toFixed(1) + 'px,' + n.ly.toFixed(1) + 'px)';
+    });
+  }
+
+  function draw(now){
+    var ee = ease(e), still = calm();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+
+    /* the site's dust drifts behind; there is no cursor web in here, the map is the web */
+    dust.forEach(function(d){
+      if (!still){ d.x += d.vx; d.y += d.vy; if (d.x < -4) d.x = W + 4; if (d.x > W + 4) d.x = -4; if (d.y < -4) d.y = H + 4; if (d.y > H + 4) d.y = -4; }
+      ctx.globalAlpha = d.a; ctx.fillStyle = d.fs; dot(d.x, d.y, d.r, d.shp);
+    });
+    ctx.globalAlpha = 1;
+
+    /* marker positions: gentle drift that stops completely while someone is exploring */
+    var calmNow = still || pointer.in || focus;
+    nodes.forEach(function(n){
+      var tx = n.px + (n.wx - n.px) * ee, ty = n.py + (n.wy - n.py) * ee;
+      if (!calmNow){ tx += Math.sin(now * .0006 + n.ph) * 2.5; ty += Math.cos(now * .0005 + n.ph * 1.7) * 2.5; }
+      n.x = tx; n.y = ty;
+    });
+
+    /* connections: one line per link, in the site's web style */
+    var on = [];
+    var dimmed = !!focus;
+    ctx.lineWidth = .9;
+    links.forEach(function(l){
+      var show = l.kind === 0 ? 1 : l.kind === 1 ? clamp((ee - l.ord * .45) / .4, 0, 1) : clamp((ee - .55 - l.ord * .3) / .2, 0, 1);
+      var hot = lit(l);
+      if (hot && l.kind === 1) show = 1;
+      if (show <= 0) return;
+      var ax = l.a.x, ay = l.a.y, bx = l.b ? l.b.x : hub.cx + Math.cos(l.a.ang) * 40, by = l.b ? l.b.y : hub.cy + Math.sin(l.a.ang) * 40;
+      var x2 = ax + (bx - ax) * show, y2 = ay + (by - ay) * show;
+      if (hot){ on.push([ax, ay, x2, y2, l]); return; }
+      var col = l.kind === 0 ? l.a.g.rgb.join(',') : '176,124,104', al = l.kind === 0 ? .45 : l.kind === 1 ? .32 : .16;
+      ctx.strokeStyle = 'rgba(' + col + ',' + (dimmed ? al * .25 : al) + ')';
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(x2, y2); ctx.stroke();
+    });
+    on.forEach(function(o){
+      var l = o[4], fwd = fromFocus(l), g = fwd || !l.b ? l.a.g : l.b.g;
+      ctx.strokeStyle = 'rgba(' + g.rgb.join(',') + ',.85)'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(o[0], o[1]); ctx.lineTo(o[2], o[3]); ctx.stroke();
+      if (!still){
+        var t = (now * .0004 + l.ph) % 1; if (!fwd) t = 1 - t;
+        ctx.fillStyle = 'rgba(' + g.rgb.join(',') + ',1)';
+        var px = o[0] + (o[2] - o[0]) * t, py = o[1] + (o[3] - o[1]) * t;
+        ctx.fillRect(px - 1.8, py - 1.8, 3.6, 3.6);
+      }
+    });
+
+    /* the centre gathers once the parts have come together */
+    if (ee > .4){
+      var ha = clamp((ee - .4) / .5, 0, 1);
+      for (var h = 0; h < 40; h++){
+        var a = h / 40 * 6.283 + (calmNow ? 0 : now * .00008), rr = 40 + Math.sin(h * 2.3) * 3;
+        ctx.globalAlpha = ha * (focus === 'hub' ? .95 : .55); ctx.fillStyle = GROUPS[h % 5].dot;
+        dot(hub.cx + Math.cos(a) * rr, hub.cy + Math.sin(a) * rr, h % 3 ? 1 : 1.5, h % 4 ? 0 : 1);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    /* one shaped marker per part */
+    nodes.forEach(function(n){
+      var on2 = !focus || n.el.classList.contains('on'), me = focus === n || (focus && focus.group === n.g);
+      if (me || (focus && on2)){
+        ctx.globalAlpha = me ? .22 : .12; ctx.fillStyle = n.g.dot; shapePath(ctx, n.g.shape, n.x, n.y, me ? 15 : 12); ctx.fill();
+      }
+      ctx.globalAlpha = on2 ? 1 : .3;
+      ctx.fillStyle = n.g.dot; ctx.strokeStyle = 'rgba(255,248,240,.95)'; ctx.lineWidth = 1.6;
+      shapePath(ctx, n.g.shape, n.x, n.y, me ? 7.5 : 6.5); ctx.fill(); ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+
+    /* group names beside each small system on phones, where the part names would crowd */
+    if (phone && ee < .5){
+      ctx.globalAlpha = (1 - ee * 2) * (focus ? .2 : 1); ctx.font = '700 13px ' + getComputedStyle(body).fontFamily; ctx.textBaseline = 'middle';
+      GROUPS.forEach(function(g){ ctx.fillStyle = g.text; ctx.fillText(g.name, 12, g.gy); });
+      ctx.globalAlpha = 1;
+    }
+    placeLabels(ee);
+  }
+
+  var lastNow = 0;
+  function frame(now){
+    var dt = lastNow ? Math.min(64, now - lastNow) : 16; lastNow = now;
+    if (tween){
+      var p = clamp((now - tween.t0) / tween.dur, 0, 1), v = tween.from + (tween.to - tween.from) * ease(p);
+      eT = e = v; show(v);
+      if (p >= 1) tween = null;
+    } else {
+      e += (eT - e) * (1 - Math.exp(-dt / 70)); if (Math.abs(eT - e) < .0005) e = eT;
+    }
+    sync(); draw(now);
+    if (running) raf = requestAnimationFrame(frame);
+  }
+  function kick(){ if (!running){ if (tween){ eT = e = tween.to; show(e); tween = null; } sync(); draw(performance.now()); } }
+  function refresh(){
+    if (calm()){ running = false; cancelAnimationFrame(raf); e = eT; layout(); sync(); return; }
+    if (visible && !document.hidden){ if (!running){ running = true; raf = requestAnimationFrame(frame); } }
+    else { running = false; cancelAnimationFrame(raf); }
+  }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; refresh(); }).observe(frameEl);
+    new IntersectionObserver(function(en){ if (en[0].isIntersecting) autoplay(); }, {threshold:.6}).observe(frameEl);
+  } else visible = true;
+  var rt; addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layout, 120); });
+  document.addEventListener('visibilitychange', refresh);
+  var et = document.getElementById('easyToggle'); if (et) et.addEventListener('click', function(){ setTimeout(function(){ refresh(); layout(); }, 30); });
+  if (rmq.addEventListener) rmq.addEventListener('change', refresh);
+  setE(0); layout(); desc.innerHTML = blank(); refresh();
 })();
 </script>
 </body>
