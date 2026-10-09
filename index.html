@@ -372,7 +372,39 @@ body.easy .sm-words{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,
   #services .incl li{padding:3px 0;font-size:.88rem}
   #contact .tablet{width:min(540px, 100%, calc((100vh - var(--hd, 69px) - 250px) * 1.6 + 28px))}
 }
+/* ---------- Coming soon gate ---------- */
+.gate{display:none}
+html.gated,html.gated body{overflow:hidden;height:100%}
+html.gated .skip,html.gated header.site,html.gated #home > section,html.gated footer,html.gated .view,html.gated .hero > div:first-child{display:none!important}
+html.gated .hero{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px, 2vh, 20px);height:100vh;min-height:0;padding:20px 16px;transition:opacity .5s ease}
+html.gated .logo-slot{order:0;width:min(380px, 78vw, calc(100vh - 340px));min-width:180px;margin:0}
+html.gate-opening .hero{opacity:0}
+html.gated .gate{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;position:relative;z-index:2}
+.gate-brand{margin:0;font-family:var(--serif);font-size:clamp(1.5rem, 3vw, 2rem);color:var(--copper-deep);line-height:1.1}
+.gate-brand span{display:block;font:500 .72rem var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--copper);margin-top:6px}
+.gate-note{margin:0;color:var(--ink-soft);font-size:1rem}
+.gate-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.gate-admin{font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);background:none;border:1px dashed var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;margin-top:4px}
+.gate-admin:hover,.gate-admin[aria-expanded="true"]{border-style:solid;color:var(--copper-deep);border-color:var(--copper)}
+.gate-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center}
+.gate-form[hidden]{display:none}
+.gate-form input{font:inherit;padding:11px 16px;border-radius:999px;border:1px solid var(--copper);background:var(--card);color:var(--ink);width:200px}
+.gate-form input:focus-visible,.gate-admin:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.gate-err{flex-basis:100%;margin:0;min-height:1.3em;font-size:.88rem;color:#9b2c2c}
+.gate-form.shake{animation:gateShake .35s}
+@keyframes gateShake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
 </style>
+<script>
+/* Coming soon gate: shown until the admin password has been entered on this browser. Add ?lock to the address to show it again. */
+(function(){
+  var KEY = 'src-access', open = false;
+  try { if (/[?&]lock\b/.test(location.search)) localStorage.removeItem(KEY); open = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (!open){
+    document.documentElement.classList.add('gated');
+    if (/^#\//.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+  }
+})();
+</script>
 </head>
 <body>
 <script>
@@ -419,6 +451,21 @@ body.easy .sm-words{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,
       <a class="human-link" href="#about"><span class="hl-idx">ABOUT RAE</span><span class="hl-text">The human side of technical solutions</span><span class="hl-arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="logo-slot" id="logoSlot"><img src="assets/logo-monogram.png" alt="Sarah Rae Consulting monogram"></div>
+    <div class="gate" id="gate" role="region" aria-labelledby="gate-h">
+      <p class="gate-brand" id="gate-h">Sarah Rae<span>Consulting</span></p>
+      <p class="gate-note">A new website is coming soon.</p>
+      <div class="gate-links">
+        <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">Email</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/raegaldes/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <button type="button" class="gate-admin" id="gateAdmin" aria-expanded="false" aria-controls="gateForm">Admin</button>
+      <form class="gate-form" id="gateForm" hidden>
+        <label for="gatePw" class="sr-only">Password</label>
+        <input type="password" id="gatePw" autocomplete="current-password" placeholder="Password">
+        <button type="submit" class="btn primary">Enter</button>
+        <p class="gate-err" id="gateErr" role="alert"></p>
+      </form>
+    </div>
   </div>
 
   <section id="services" aria-labelledby="services-h">
@@ -1835,6 +1882,49 @@ body.easy .sm-words{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,
   function set(){ document.documentElement.style.setProperty('--hd', hd.offsetHeight + 'px'); }
   set(); addEventListener('resize', set); addEventListener('load', set);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(set);
+})();
+</script>
+<script>
+/* Coming soon gate: admin unlock. This hides the site from casual visitors; it is not real security, because the page source is public. */
+(function(){
+  var root = document.documentElement;
+  if (!root.classList.contains('gated')) return;
+  var SHA = '25a6634263c1b1f6fc4697a04e2b9904ea4b042a89af59dc93ec1f5d44848a26', FNV = 'd33ce1c9';
+  var btn = document.getElementById('gateAdmin'), form = document.getElementById('gateForm'), pw = document.getElementById('gatePw'), err = document.getElementById('gateErr');
+  function fnv(s){ var h = 0x811c9dc5; for (var i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return ('0000000' + h.toString(16)).slice(-8); }
+  function check(v){
+    if (window.crypto && crypto.subtle && window.TextEncoder){
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)).then(function(buf){
+        return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0' + b.toString(16)).slice(-2); }).join('') === SHA;
+      });
+    }
+    return Promise.resolve(fnv(v) === FNV);
+  }
+  btn.addEventListener('click', function(){
+    var show = form.hidden; form.hidden = !show; btn.setAttribute('aria-expanded', show);
+    if (show) pw.focus();
+  });
+  pw.addEventListener('input', function(){ err.textContent = ''; });
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var v = pw.value.trim().toLowerCase();
+    if (!v){ err.textContent = 'Enter the password first.'; pw.focus(); return; }
+    check(v).then(function(ok){
+      if (!ok){
+        err.textContent = 'That password didn\u2019t work.'; pw.select();
+        form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+        return;
+      }
+      try { localStorage.setItem('src-access', '1'); } catch (e) {}
+      root.classList.add('gate-opening');
+      setTimeout(function(){
+        root.classList.remove('gated', 'gate-opening');
+        window.scrollTo({top:0, left:0, behavior:'instant'});
+        window.dispatchEvent(new Event('resize'));
+        var h1 = document.querySelector('.hero h1'); if (h1){ h1.setAttribute('tabindex', '-1'); h1.focus({preventScroll:true}); }
+      }, 500);
+    });
+  });
 })();
 </script>
 </body>
