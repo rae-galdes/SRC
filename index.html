@@ -455,7 +455,7 @@ html.gated .gate{display:flex;flex-direction:column;align-items:center;text-alig
       <p class="gate-brand" id="gate-h">Sarah Rae<span>Consulting</span></p>
       <p class="gate-note">A new website is coming soon.</p>
       <div class="gate-links">
-        <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">Email</a>
+        <a class="btn primary" href="mailto:hello@sarahraeconsulting.com">Email</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/raegaldes/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <button type="button" class="gate-admin" id="gateAdmin" aria-expanded="false" aria-controls="gateForm">Admin</button>
@@ -561,9 +561,9 @@ html.gated .gate{display:flex;flex-direction:column;align-items:center;text-alig
               <div class="appbar"><button class="home-btn" type="button">← Home</button><b id="mail-h" tabindex="-1">Email</b><span></span></div>
               <div class="appbody">
                 <p class="app-label">Send a message to</p>
-                <p class="app-big">sarahraeconsulting@gmail.com</p>
+                <p class="app-big">hello@sarahraeconsulting.com</p>
                 <div class="ctas">
-                  <a class="btn primary" href="mailto:sarahraeconsulting@gmail.com">Write an email</a>
+                  <a class="btn primary" href="mailto:hello@sarahraeconsulting.com">Write an email</a>
                   <button class="btn ghost" type="button" id="copyEmail">Copy address</button>
                 </div>
                 <span class="copy-status" role="status" aria-live="polite" id="copyStatus"></span>
@@ -1150,7 +1150,7 @@ html.gated .gate{display:flex;flex-direction:column;align-items:center;text-alig
   /* ---------- Copy email ---------- */
   var copyBtn = document.getElementById('copyEmail'), status = document.getElementById('copyStatus');
   copyBtn.addEventListener('click', function(){
-    var email = 'sarahraeconsulting@gmail.com';
+    var email = 'hello@sarahraeconsulting.com';
     function done(){ status.textContent = 'Copied to clipboard'; setTimeout(function(){ status.textContent = ''; }, 2500); }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, function(){ status.textContent = email; });
     else status.textContent = email;
