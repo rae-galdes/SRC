@@ -744,6 +744,7 @@ html.gated .gate{display:flex;flex-direction:column;align-items:center;text-alig
     var slotEl = document.getElementById('logoSlot'), homeEl = document.getElementById('home');
     var W = 0, H = 0, parts = [], bits = [], ripples = [], raf = 0, running = false, still = false, lastSlot = null;
     var t0 = performance.now(), mouse = {x:-9999, y:-9999, on:false, vx:0, vy:0, dx:0, dy:0, moved:0}, gathers = [], gatherUntil = 0;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches, BRANCH_EVERY = 20000, branch = null, nextBranch = 0;
     var formers = [], fEdges = [], formReleased = false;
     var AC = ['168,100,74','222,150,120','158,184,214','178,180,214','236,176,140','123,70,54'];
 
@@ -967,21 +968,44 @@ html.gated .gate{display:flex;flex-direction:column;align-items:center;text-alig
       }
       ctx.globalAlpha = 1;
 
-      /* Web lines: lighter colour, and grouped into three shared paths so overlaps never stack up into dark knots */
-      ctx.lineWidth = .7;
-      var webs = [[], [], []];
-      for (var m = 0; m < near.length; m++){
-        for (var n2 = m + 1; n2 < near.length; n2++){
-          var lx = near[m].x - near[n2].x, ly = near[m].y - near[n2].y, ld = Math.sqrt(lx * lx + ly * ly);
-          if (ld < 120) webs[ld < 40 ? 0 : ld < 80 ? 1 : 2].push(near[m], near[n2]);
+      /* Cursor branch (computer only, never touch screens): every 20 seconds a web branches out from the cursor
+         to the nearest specks, holds a moment, then fades. There is no constant cursor web. */
+      if (finePointer && !still){
+        if (!nextBranch) nextBranch = now + BRANCH_EVERY;
+        if (!branch && now >= nextBranch && mouse.on && near.length > 2){
+          var pool = near.slice().sort(function(a, b2){
+            return ((a.x - mouse.x) * (a.x - mouse.x) + (a.y - mouse.y) * (a.y - mouse.y)) - ((b2.x - mouse.x) * (b2.x - mouse.x) + (b2.y - mouse.y) * (b2.y - mouse.y));
+          }).slice(0, 16);
+          var used = [], edges = [], level = [{x:mouse.x, y:mouse.y}], fan = [3, 2, 1];
+          for (var dep = 0; dep < 3 && pool.length; dep++){
+            var next = [];
+            level.forEach(function(from){
+              var cand = pool.filter(function(q){ return used.indexOf(q) < 0; }).sort(function(a, b2){
+                return ((a.x - from.x) * (a.x - from.x) + (a.y - from.y) * (a.y - from.y)) - ((b2.x - from.x) * (b2.x - from.x) + (b2.y - from.y) * (b2.y - from.y));
+              }).slice(0, fan[dep]);
+              cand.forEach(function(q){ used.push(q); next.push(q); edges.push({a:from, b:q, d:dep}); });
+            });
+            level = next;
+          }
+          if (edges.length) branch = {start:now, edges:edges};
+          nextBranch = now + BRANCH_EVERY;
         }
-      }
-      var webA = [.3, .2, .11];
-      for (var wi = 0; wi < 3; wi++){
-        var wl = webs[wi]; if (!wl.length) continue;
-        ctx.beginPath();
-        for (var wj = 0; wj < wl.length; wj += 2){ ctx.moveTo(wl[wj].x, wl[wj].y); ctx.lineTo(wl[wj + 1].x, wl[wj + 1].y); }
-        ctx.strokeStyle = 'rgba(176,124,104,' + webA[wi] + ')'; ctx.stroke();
+        if (branch){
+          var bt = now - branch.start, fadeB = bt < 1900 ? 1 : 1 - (bt - 1900) / 1300;
+          if (fadeB <= 0) branch = null;
+          else {
+            ctx.lineWidth = .8;
+            ctx.strokeStyle = 'rgb(176,124,104)';
+            for (var be = 0; be < branch.edges.length; be++){
+              var E = branch.edges[be], grow = Math.max(0, Math.min(1, (bt - E.d * 230) / 340));
+              if (grow <= 0) continue;
+              ctx.globalAlpha = [.42, .3, .2][E.d] * fadeB;
+              ctx.beginPath(); ctx.moveTo(E.a.x, E.a.y);
+              ctx.lineTo(E.a.x + (E.b.x - E.a.x) * grow, E.a.y + (E.b.y - E.a.y) * grow); ctx.stroke();
+            }
+            ctx.globalAlpha = 1;
+          }
+        }
       }
 
       /* Fragments of dissolving content */
